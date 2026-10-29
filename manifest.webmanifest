@@ -1,12 +1,12 @@
 {
   "name": "Mes Finances",
   "short_name": "Mes Finances",
-  "description": "Mon budget quotidien hors ligne",
+  "description": "Budget quotidien, virements et objectifs — Midnight Bordeaux",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f4f7fa",
-  "theme_color": "#123d54",
+  "background_color": "#111626",
+  "theme_color": "#30192d",
   "icons": [
     {
       "src": "./icon-192.png",
