@@ -149,10 +149,30 @@ function v3AddGoal(){const name=prompt('Nom de l’objectif');if(!name?.trim())r
 function v3UpdateGoal(id){const g=state.v3.goals.find(x=>x.id===id);if(!g)return;const val=prompt('Montant actuellement mis de côté (€)',String(g.saved));if(val===null)return;const n=Number(val.replace(',','.'));if(!Number.isFinite(n)||n<0)return alert('Montant invalide');g.saved=n;save()}
 function v3DeleteGoal(id){if(confirm('Supprimer cet objectif ?')){state.v3.goals=state.v3.goals.filter(g=>g.id!==id);save()}}
 function v3RenderReports(){const st=v3Stats(month),prior=v3Stats(shiftMonth(month,-1));const sums={};for(const e of st.list){const c=v3Category(e);sums[c]=(sums[c]||0)+Number(e.amount||0)}const entries=Object.entries(sums).sort((a,b)=>b[1]-a[1]);$('reports').innerHTML=`<div class="card"><h2>Bilan mensuel · ${esc(month)}</h2><div class="v3-tiles"><div class="v3-tile"><small>Dépenses variables</small><b>${eur(st.spent)}</b></div><div class="v3-tile"><small>Reste pour vivre</small><b>${st.rem===null?'—':eur(st.rem)}</b></div><div class="v3-tile"><small>Charges fixes réservées</small><b>${eur(fixed(month))}</b></div><div class="v3-tile"><small>Écart dépenses vs mois précédent</small><b>${eur(st.spent-prior.spent)}</b></div></div><h3 style="margin-top:20px">Répartition des dépenses variables</h3>${entries.length?entries.map(([c,v])=>`<div style="margin:15px 0"><div class="v3-inline"><b>${esc(c)}</b><span>${eur(v)}</span></div><div class="v3-progress" style="margin-top:7px"><span style="width:${st.spent>0?100*v/st.spent:0}%"></span></div></div>`).join(''):'<p class="muted">Aucune dépense enregistrée ce mois.</p>'}<p class="v3-detail">Les virements entre comptes et les charges fixes ne sont pas comptés parmi les dépenses variables.</p></div>${v3PredictionHTML(month)}`}
-function v3CalendarView(){const v=state.v3.calendarView,el=$('calendarList');if(!el)return;const rows=[...el.querySelectorAll('.row')];if(v==='timeline'){el.classList.add('v3-timeline');rows.forEach((r,i)=>{r.style.borderLeft='3px solid var(--accent)';r.style.paddingLeft='14px';r.style.marginLeft='7px'})}else{el.classList.remove('v3-timeline');rows.forEach(r=>{r.style.borderLeft='';r.style.paddingLeft='';r.style.marginLeft=''})}if(v==='calendar'){const group={};for(const r of rows){const date=r.querySelector('.muted')?.textContent?.slice(0,10)||'';(group[date]??=[]).push(r.outerHTML)}if(rows.length)el.innerHTML=Object.entries(group).map(([date,rs])=>`<h3 style="margin-top:17px">${esc(date)}</h3>${rs.join('')}`).join('')}}
+function v3CalendarView(){
+ const el=$('calendarList');if(!el)return;
+ const view=state.v3.calendarView;
+ const rows=[...el.querySelectorAll('.row')];
+ el.classList.toggle('v3-timeline',view==='timeline');
+ if(view==='timeline'){
+   rows.forEach(r=>{r.style.borderLeft='3px solid var(--accent)';r.style.paddingLeft='14px';r.style.marginLeft='7px'});
+ }else if(view==='calendar'){
+   const groups=new Map();
+   for(const r of rows){const date=r.querySelector('.muted')?.textContent?.slice(0,10)||'Date inconnue';if(!groups.has(date))groups.set(date,[]);groups.get(date).push(r.outerHTML)}
+   if(groups.size)el.innerHTML=el.querySelector('p.muted')?.outerHTML+Array.from(groups,([date,items])=>`<h3 style="margin-top:17px">${esc(date)}</h3>${items.join('')}`).join('');
+ }
+}
 const v3OriginalRenderCalendar=renderCalendar;
 renderCalendar=function(){v3OriginalRenderCalendar();v3CalendarView()};
-function v3CalendarToolbar(){const c=$('calendar');c.insertAdjacentHTML('afterbegin',`<div class="card"><h3>Affichage du calendrier</h3><div class="v3-toolbar">${[['list','Liste'],['calendar','Par date'],['timeline','Chronologie']].map(([v,label])=>`<button class="${state.v3.calendarView===v?'active':''}" onclick="state.v3.calendarView='${v}';save()">${label}</button>`).join('')}</div></div>`)}
+function v3CalendarToolbar(){
+ const c=$('calendar');c.querySelectorAll('.v3-calendar-toolbar').forEach(node=>node.remove());
+ c.insertAdjacentHTML('afterbegin',`<div class="card v3-calendar-toolbar"><h3>Affichage du calendrier</h3><div class="v3-toolbar">${[['list','Liste'],['calendar','Par date'],['timeline','Chronologie']].map(([v,label])=>`<button class="${state.v3.calendarView===v?'active':''}" onclick="v3SetCalendarView('${v}')">${label}</button>`).join('')}</div></div>`);
+}
+function v3SetCalendarView(view){
+ if(!['list','calendar','timeline'].includes(view))return;
+ state.v3.calendarView=view;
+ save();
+}
 function v3Settings(){const e=$('backup');e.insertAdjacentHTML('beforeend',`<div class="card"><h3>Apparence</h3><label>Thème de l'application</label><select onchange="state.v3.theme=this.value;v3Theme();save()"><option value="dark" ${state.v3.theme==='dark'?'selected':''}>Midnight Bordeaux (sombre)</option><option value="light" ${state.v3.theme==='light'?'selected':''}>Bordeaux Minimal (clair)</option><option value="auto" ${state.v3.theme==='auto'?'selected':''}>Automatique (Android)</option></select><p class="muted">V3 : le mode de prévision intelligente s’activera dans une prochaine évolution après validation de données historiques suffisantes. Le calcul actuel est simple et transparent.</p></div>`)}
 const v3OldRender=render;
 render=function(){v3Theme();v3OldRender();for(const id of ['categories','goals','reports'])$(id).classList.toggle('hidden',id!==tab);document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));v3Daily();v3RenderCategories();v3RenderGoals();v3RenderReports();v3Settings();if(tab==='calendar')v3CalendarToolbar();$('v3Fab').classList.toggle('hidden',tab!=='daily');};
