@@ -1,7 +1,7 @@
 {
-  "name": "Mes Finances",
+  "name": "Mes Finances V4.0 — Midnight Bordeaux Ultimate",
   "short_name": "Mes Finances",
-  "description": "Budget quotidien, virements et objectifs — Midnight Bordeaux",
+  "description": "Budget personnel privé, hors connexion, suivi de comptes et prévisions",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
@@ -20,5 +20,6 @@
       "type": "image/png",
       "purpose": "any maskable"
     }
-  ]
+  ],
+  "id": "./mes-finances-v40-ultimate"
 }

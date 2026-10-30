@@ -1,13 +1,24 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#30192d"><link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./icon-192.png"><link rel="apple-touch-icon" href="./icon-192.png"><title>Mes Finances</title><style>
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#30192d"><link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./icon-192.png"><link rel="apple-touch-icon" href="./icon-192.png"><title>Mes Finances V3.2 — Test consolidé</title><style>
 :root{font-family:system-ui,-apple-system,sans-serif;color:#182b37;background:#f4f7fa}*{box-sizing:border-box}body{margin:0}header{background:#123d54;color:white;padding:22px 18px}header h1{margin:0;font-size:24px}main{max-width:650px;margin:auto;padding:16px}nav{display:flex;gap:7px;overflow:auto;margin:0 0 16px}button{cursor:pointer;border:0;border-radius:11px;padding:11px 14px;font-weight:650;background:#dbe8ee;color:#15394a}button.primary{background:#17688a;color:white}button.danger{background:#fce7e7;color:#8a2222}nav button.active{background:#123d54;color:white}.card{background:white;border-radius:17px;padding:18px;margin-bottom:14px;box-shadow:0 2px 10px #17384c0d}.hero{background:#dff4e9}.hero strong{font-size:34px;display:block;margin-top:6px}.row{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid #edf0f3}.row:last-child{border:0}.muted{color:#60727e;font-size:13px}.negative{color:#b33434}.positive{color:#146c4a}input,select{width:100%;border:1px solid #bacbd3;border-radius:9px;padding:11px;font-size:16px;background:white;color:#182b37}label{display:block;font-size:13px;font-weight:650;margin:11px 0 5px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.hidden{display:none!important}.tiny{font-size:12px}.wrap{overflow-wrap:anywhere}h2{font-size:19px;margin:4px 0 14px}h3{font-size:16px;margin:0 0 10px}.listItem{border-bottom:1px solid #edf0f3;padding:12px 0}.listItem:last-child{border:0}.listTop{display:flex;justify-content:space-between;gap:10px;align-items:center}.listItem button{padding:7px 9px;font-size:12px} .notice{background:#fff6dc;padding:12px;border-radius:10px;font-size:13px} @media(max-width:400px){.grid{grid-template-columns:1fr}}
 
 /* V3 Midnight Bordeaux / Bordeaux Minimal */
 :root{--bg:#111626;--panel:#1d2335;--panel2:#29273c;--ink:#f8eff4;--muted:#c3b1c4;--line:#49364c;--accent:#a83c5c;--accent2:#7c4b9e;--button:#41263e;--hero1:#68223f;--hero2:#2c2448;color-scheme:dark}
 :root[data-theme="light"]{--bg:#f7f3f2;--panel:#ffffff;--panel2:#f2e8eb;--ink:#272338;--muted:#675b68;--line:#e5d7dd;--accent:#842c4b;--accent2:#725087;--button:#eee2e7;--hero1:#752b48;--hero2:#4d365f;color-scheme:light}
 html{background:var(--bg)}body{background:var(--bg);color:var(--ink);min-height:100vh}header{background:linear-gradient(125deg,#14192c,#4b1b35 75%,#6f2546);padding:22px 20px 25px;border-bottom:1px solid #8d4664}header h1{letter-spacing:-.7px;font-weight:780}header .muted{color:#ead0db!important}main{max-width:720px;padding:15px 14px 98px}.card{background:var(--panel);color:var(--ink);border:1px solid var(--line);box-shadow:0 9px 28px #08071218;border-radius:19px;padding:18px}.hero{background:linear-gradient(135deg,var(--hero1),var(--hero2));color:#fff;border-color:#965370}.hero .muted{color:#e7cbd8}.hero strong{color:white;font-size:clamp(29px,8vw,43px);letter-spacing:-1px}.muted{color:var(--muted)}.row,.listItem{border-color:var(--line)}.positive{color:#f5c6d6}.negative{color:#ffadb5}button{background:var(--button);color:var(--ink);border:1px solid var(--line);transition:filter .15s}button:active{filter:brightness(1.15)}button.primary{background:linear-gradient(125deg,#a0395b,#762b64);color:white;border-color:#b35b7c}button.danger{background:#5b2435;color:#fff;border-color:#7c3448}input,select{background:var(--panel2);border-color:var(--line);color:var(--ink)}.notice{background:var(--panel2);color:var(--ink);border:1px solid var(--line)}nav{position:fixed;bottom:0;left:0;right:0;z-index:20;display:flex;gap:0;margin:0;overflow-x:auto;background:var(--panel);border-top:1px solid var(--line);padding:7px max(6px,calc((100vw - 720px)/2));box-shadow:0 -6px 20px #0002}nav button{background:transparent;border:0;border-radius:12px;white-space:nowrap;font-size:11px;min-width:75px;padding:9px 8px;flex:1}nav button.active{background:var(--panel2);color:var(--accent);border:0}nav button::before{content:attr(data-icon);display:block;font-size:21px;margin-bottom:2px}.v3-kicker{text-transform:uppercase;font-size:11px;letter-spacing:1.5px;color:#ead2e1;font-weight:700}.v3-metric{font-size:34px;font-weight:800;letter-spacing:-1px;margin:8px 0}.v3-tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}.v3-tile{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:13px}.v3-tile small{color:var(--muted);display:block;margin-bottom:8px}.v3-tile b{font-size:18px}.v3-pill{font-size:12px;border:1px solid var(--line);border-radius:40px;padding:5px 9px;display:inline-block;margin:3px}.v3-progress{height:9px;background:var(--panel2);border-radius:20px;overflow:hidden}.v3-progress>span{display:block;height:100%;background:linear-gradient(90deg,#8b3150,#a17ac5);border-radius:20px}.v3-fab{position:fixed;right:18px;bottom:85px;z-index:25;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#b53f62,#6d3b92);color:white;font-size:30px;box-shadow:0 7px 22px #0005;border:1px solid #bc7798}.v3-fab.hidden{display:none!important}.v3-inline{display:flex;align-items:center;justify-content:space-between;gap:10px}.v3-inline>*{min-width:0}.v3-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.v3-toolbar button.active{background:var(--accent);color:white}.v3-detail{font-size:12px;color:var(--muted)}
-</style></head><body><header><h1>Mes Finances</h1><div class="muted" style="color:#c7e0ec">Votre quotidien, en toute clarté</div></header><main><nav><button data-tab="daily" class="active">Mon quotidien</button><button data-tab="charges">Charges</button><button data-tab="accounts">Comptes</button><button data-tab="backup">Sauvegarde</button></nav><section id="daily"></section><section id="charges" class="hidden"></section><section id="accounts" class="hidden"></section><section id="backup" class="hidden"></section></main><script>
+
+/* V4.0 mobile navigation correction: scrollable, non-overlapping tabs */
+html,body{max-width:100%;overflow-x:hidden}
+main{min-width:0;width:100%;padding-bottom:calc(100px + env(safe-area-inset-bottom,0px))}
+nav{box-sizing:border-box;width:100%;max-width:100vw;left:0;right:0;display:flex!important;flex-wrap:nowrap!important;justify-content:flex-start!important;align-items:stretch;gap:5px!important;overflow-x:auto!important;overflow-y:hidden!important;overscroll-behavior-x:contain;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:thin;padding:7px 10px calc(8px + env(safe-area-inset-bottom,0px))!important}
+nav button{flex:0 0 auto!important;min-width:85px!important;max-width:130px;min-height:59px;box-sizing:border-box;white-space:normal!important;overflow-wrap:normal;word-break:normal;line-height:1.2;font-size:11px!important;text-align:center;padding:8px 10px!important;scroll-snap-align:center}
+nav button[data-tab="analysis"]{min-width:130px!important}
+nav button[data-tab="v4forecast"]{min-width:100px!important}
+nav button[data-tab="v4privacy"]{min-width:115px!important}
+nav button::before{line-height:1.1}
+@media(max-width:420px){header h1{font-size:clamp(21px,6vw,28px)}.card{padding:15px}main{padding-left:12px;padding-right:12px}}
+</style></head><body><header><h1>Mes Finances V4.0 — Midnight Bordeaux Ultimate</h1><div class="muted">ÉDITION ULTIMATE · Installation séparée de la V3.1</div><div class="muted" style="color:#c7e0ec">Votre quotidien, en toute clarté</div></header><main><nav><button data-tab="daily" class="active">Mon quotidien</button><button data-tab="charges">Charges</button><button data-tab="accounts">Comptes</button><button data-tab="backup">Sauvegarde</button><button data-tab="analysis">Analyse & prévisions</button></nav><section id="daily"></section><section id="charges" class="hidden"></section><section id="accounts" class="hidden"></section><section id="backup" class="hidden"></section><section id="analysis" class="hidden"></section></main><script>
 const SEED={"charges":[],"accounts":[{"name":"Courant","balance":0,"date":"2026-10-28"},{"name":"Épargne","balance":0,"date":"2026-10-28"},{"name":"FNZ Sparkonto","balance":0,"date":"2026-10-28"}],"salaries":{},"carry":{},"expenses":[],"octoberOpening":0,"octoberRemainingCharges":0};
-const KEY='mes-finances-local-v1';
+const KEY='mes-finances-v40-ultimate-local-v1';
 let state;try{state=JSON.parse(localStorage.getItem(KEY))||structuredClone(SEED)}catch{state=structuredClone(SEED)}
 // Mise à jour ciblée : Prime Music est une charge fixe, y compris dans les sauvegardes existantes.
 function normalizePrime(data){if(Array.isArray(data?.charges)){for(const ch of data.charges){if(ch.id===12&&ch.name==='Prime Music Abo')ch.budget='Fixe'}}return data}
@@ -48,7 +59,7 @@ function renderMonthlyDueDetails(m){
 function fixed(m){return monthlyDueDetails(m).total}
 function budget(m){if(m==='2026-10')return state.octoberOpening-state.octoberRemainingCharges;let salary=state.salaries[shiftMonth(m,-1)];return salary===undefined||salary===''?null:Number(salary)-fixed(m)+Number(state.carry[m]||0)}
 function expenses(m){return state.expenses.filter(e=>e.month===m).sort((a,b)=>a.date.localeCompare(b.date)||a.id-b.id)}
-function render(){document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));for(let id of ['daily','charges','accounts','backup'])$(id).classList.toggle('hidden',id!==tab);renderDaily();renderCharges();renderAccounts();renderBackup()}
+function render(){document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));for(let id of ['daily','charges','accounts','backup','analysis'])$(id).classList.toggle('hidden',id!==tab);renderDaily();renderCharges();renderAccounts();renderBackup();renderV32Analysis()}
 function renderDaily(){let m=month,b=budget(m),list=expenses(m),spent=list.reduce((a,x)=>a+Number(x.amount),0),remaining=b===null?null:b-spent,prior=shiftMonth(m,-1),sum=0;let label=new Date(m+'-01T12:00:00Z').toLocaleDateString('fr-FR',{month:'long',year:'numeric',timeZone:'UTC'});
 $('daily').innerHTML=`<div class="card"><div class="grid"><button onclick="changeMonth(-1)">‹ Mois précédent</button><button onclick="changeMonth(1)">Mois suivant ›</button></div><h2 style="text-transform:capitalize;margin-top:14px">${label}</h2>${m==='2026-10'?`<div class="notice">Octobre est exceptionnel : départ de ${eur(state.octoberOpening)} moins ${eur(state.octoberRemainingCharges)} de charges encore dues.</div>`:`<label>Salaire réellement reçu en ${new Date(prior+'-01T12:00:00Z').toLocaleDateString('fr-FR',{month:'long',timeZone:'UTC'})} (€)</label><input id="salary" type="number" step="0.01" placeholder="Saisir le salaire reçu" value="${state.salaries[prior]??''}" onchange="setSalary('${prior}',this.value)"><div class="row"><span>Charges fixes réservées</span><b>− ${eur(fixed(m))}</b></div><label>Report facultatif du mois précédent (€)</label><input type="number" step="0.01" min="0" value="${state.carry[m]||0}" onchange="setCarry('${m}',this.value)">`}<div class="row"><span>Budget de départ pour vivre</span><b>${b===null?'Salaire à renseigner':eur(b)}</b></div></div>${renderMonthlyDueDetails(m)}<div class="card hero"><span>Il me reste pour vivre</span><strong class="${remaining!==null&&remaining<0?'negative':'positive'}">${remaining===null?'—':eur(remaining)}</strong><div class="muted">${eur(spent)} de dépenses enregistrées</div></div><div class="card"><h3>Ajouter une dépense</h3><div class="grid"><div><label>Date</label><input type="date" id="expenseDate" value="${m===new Date().toISOString().slice(0,7)?new Date().toISOString().slice(0,10):m+'-01'}"></div><div><label>Montant (€)</label><input type="number" id="expenseAmount" step="0.01" min="0.01" placeholder="0,00"></div></div><label>Qu'ai-je acheté ?</label><input id="expenseName" placeholder="Courses, café, restaurant…"><div class="actions"><button class="primary" onclick="addExpense()">+ Ajouter la dépense</button></div></div><div class="card"><h3>Mes dépenses (${list.length})</h3>${list.length?list.map(e=>{sum+=Number(e.amount);return `<div class="listItem"><div class="listTop"><div><b>${esc(e.name)}</b><div class="muted">${esc(e.date)}</div></div><div style="text-align:right"><b>− ${eur(e.amount)}</b><div class="muted">Reste : ${b===null?'—':eur(b-sum)}</div></div></div><div class="actions"><button onclick="editExpense(${e.id})">Modifier</button><button class="danger" onclick="deleteExpense(${e.id})">Supprimer</button></div></div>`}).join(''):'<p class="muted">Aucune dépense pour ce mois.</p>'}</div>`}
 function changeMonth(n){month=shiftMonth(month,n);render()}function setSalary(m,v){if(v==='')delete state.salaries[m];else state.salaries[m]=Number(v);save()}function setCarry(m,v){state.carry[m]=Math.max(0,Number(v)||0);save()}
@@ -86,12 +97,12 @@ const automaticTransfers=(until=TODAY())=>{
 const allTransfers=(until=TODAY())=>[...automaticTransfers(until),...state.transfers.filter(t=>t.date<=until)].sort((a,b)=>a.date.localeCompare(b.date));
 const accountProjected=(a,until=TODAY())=>{
  let val=cents(a.balance),base=a.date||'9999-12-31';
- for(const t of allTransfers(until)){if(t.date<=base)continue;if(t.from===a.name)val-=cents(t.amount);if(t.to===a.name)val+=cents(t.amount)}
+ for(const t of state.transfers.filter(t=>t.date<=until)){if(t.date<=base)continue;if(t.from===a.name)val-=cents(t.amount);if(t.to===a.name)val+=cents(t.amount)}
  return val/100;
 };
 function saveTransfer(){let date=$('trDate').value,from=$('trFrom').value,to=$('trTo').value,amount=Number($('trAmount').value),label=$('trLabel').value.trim();if(!date||!from||!to||from===to||!(amount>0)||!Number.isFinite(amount)){alert('Vérifie la date, les comptes et le montant.');return}state.transfers.push({id:'manual-'+Date.now(),date,from,to,amount:Math.round(amount*100)/100,kind:'manual',label:label||'Virement manuel'});save()}
 function removeTransfer(id){if(!confirm('Supprimer ce virement manuel ?'))return;state.transfers=state.transfers.filter(t=>t.id!==id);save()}
-function renderTransfers(){let names=state.accounts.map(a=>a.name),opt=selected=>names.map(n=>`<option ${n===selected?'selected':''}>${esc(n)}</option>`).join(''),list=allTransfers();$('transfers').innerHTML=`<div class="card"><h2>Virements entre comptes</h2><div class="notice">Les virements FNZ sont enregistrés automatiquement à leur date prévue, même si la banque ne les a pas encore exécutés. Ils ne sont jamais déduits une deuxième fois de ton reste pour vivre. Si un virement réel est retardé, corrige la charge régulière ou le solde de référence.</div><h3 style="margin-top:16px">Ajouter un virement manuel</h3><div class="grid"><div><label>Date</label><input id="trDate" type="date" value="${TODAY()}"></div><div><label>Montant (€)</label><input id="trAmount" type="number" step="0.01" min="0.01"></div><div><label>Depuis</label><select id="trFrom">${opt('Courant')}</select></div><div><label>Vers</label><select id="trTo">${opt('Épargne')}</select></div></div><label>Motif (facultatif)</label><input id="trLabel" placeholder="Épargne, remboursement…"><div class="actions"><button class="primary" onclick="saveTransfer()">Enregistrer le virement</button></div></div><div class="card"><h3>Historique des virements (${list.length})</h3>${list.length?list.slice().reverse().map(t=>`<div class="listItem"><div class="listTop"><div><b>${esc(t.label||'Virement')}</b><div class="muted">${esc(t.date)} · ${esc(t.from)} → ${esc(t.to)}</div><div class="muted">${t.kind==='auto'?'Programmé automatiquement (non confirmé par la banque)':'Saisi manuellement'}</div></div><b>${eur(t.amount)}</b></div>${t.kind==='manual'?`<div class="actions"><button class="danger" onclick="removeTransfer('${esc(t.id)}')">Supprimer</button></div>`:''}</div>`).join(''):'<p class="muted">Aucun virement enregistré.</p>'}</div>`}
+function renderTransfers(){let names=state.accounts.map(a=>a.name),opt=selected=>names.map(n=>`<option ${n===selected?'selected':''}>${esc(n)}</option>`).join(''),list=allTransfers();$('transfers').innerHTML=`<div class="card"><h2>Virements entre comptes</h2><div class="notice">Les virements FNZ planifiés sont des échéances prévisionnelles, pas des opérations bancaires confirmées. Ils ne sont jamais déduits une deuxième fois de ton reste pour vivre. Si un virement réel est retardé, corrige la charge régulière ou le solde de référence.</div><h3 style="margin-top:16px">Ajouter un virement manuel</h3><div class="grid"><div><label>Date</label><input id="trDate" type="date" value="${TODAY()}"></div><div><label>Montant (€)</label><input id="trAmount" type="number" step="0.01" min="0.01"></div><div><label>Depuis</label><select id="trFrom">${opt('Courant')}</select></div><div><label>Vers</label><select id="trTo">${opt('Épargne')}</select></div></div><label>Motif (facultatif)</label><input id="trLabel" placeholder="Épargne, remboursement…"><div class="actions"><button class="primary" onclick="saveTransfer()">Enregistrer le virement</button></div></div><div class="card"><h3>Historique des virements (${list.length})</h3>${list.length?list.slice().reverse().map(t=>`<div class="listItem"><div class="listTop"><div><b>${esc(t.label||'Virement')}</b><div class="muted">${esc(t.date)} · ${esc(t.from)} → ${esc(t.to)}</div><div class="muted">${t.kind==='auto'?'Prévu (non confirmé par la banque)':'Saisi manuellement'}</div></div><b>${eur(t.amount)}</b></div>${t.kind==='manual'?`<div class="actions"><button class="danger" onclick="removeTransfer('${esc(t.id)}')">Supprimer</button></div>`:''}</div>`).join(''):'<p class="muted">Aucun virement enregistré.</p>'}</div>`}
 function renderCalendar(){let days=Number($('calDays')?.value||30),start=TODAY(),end=new Date(start+'T12:00:00Z');end.setUTCDate(end.getUTCDate()+days);let items=allScheduled(start,end.toISOString().slice(0,10));$('calendarList').innerHTML=`<p class="muted">Échéances à venir, déjà réservées dans le budget du mois correspondant. Aucune deuxième déduction.</p>${items.length?items.map(e=>`<div class="row"><div><b>${esc(e.name)}</b><div class="muted">${esc(e.date)} · ${esc(e.account)}${e.isFNZ?' · virement FNZ':''}</div></div><b>${eur(e.amount)}</b></div>`).join(''):'<p>Aucune échéance dans cette période.</p>'}`}
 function closeMonth(){let m=month,rem=budget(m);if(rem===null){alert('Renseigne d’abord le salaire correspondant.');return}rem-=expenses(m).reduce((s,e)=>s+Number(e.amount),0);let max=Math.max(0,Math.round(rem*100)/100),v=prompt('Reste pour vivre : '+eur(rem)+'\nCombien reporter au mois suivant ? (0 à '+eur(max)+')',String(state.carry[shiftMonth(m,1)]||0));if(v===null)return;let amount=Number(v.replace(',','.'));if(!Number.isFinite(amount)||amount<0||amount>max){alert('Le report doit être compris entre 0 et '+eur(max));return}let next=shiftMonth(m,1);state.carry[next]=Math.round(amount*100)/100;state.closures[m]={date:TODAY(),carry:state.carry[next],remainingAtClose:Math.round(rem*100)/100};save()}
 function reopenMonth(){if(!confirm('Annuler la clôture de ce mois ? Le report du mois suivant sera remis à zéro.'))return;delete state.closures[month];state.carry[shiftMonth(month,1)]=0;save()}
@@ -100,7 +111,7 @@ render=function(){previousRender();for(const id of ['transfers','calendar'])$(id
 const previousDaily=renderDaily;
 renderDaily=function(){previousDaily();let b=budget(month),spent=expenses(month).reduce((s,e)=>s+Number(e.amount),0),rem=b===null?null:b-spent,closed=state.closures[month];$('daily').insertAdjacentHTML('beforeend',`<div class="card"><h3>Clôture du mois</h3><p class="muted">Le report reste facultatif. Les charges du mois suivant seront réservées séparément.</p><p>Reste actuel : <b>${rem===null?'Salaire à renseigner':eur(rem)}</b></p>${closed?`<p>Clôturé le ${esc(closed.date)} · Report choisi : ${eur(closed.carry)}</p><button onclick="reopenMonth()">Annuler la clôture</button>`:`<button class="primary" onclick="closeMonth()" ${rem===null?'disabled':''}>Clôturer et choisir le report</button>`}</div>`)};
 const previousAccounts=renderAccounts;
-renderAccounts=function(){previousAccounts();$('accounts').insertAdjacentHTML('beforeend',`<div class="card"><h3>Soldes après virements enregistrés</h3><p class="muted">Estimations calculées depuis les soldes de référence et les virements seulement. Elles n'incluent pas automatiquement les achats, prélèvements ou salaires : ce ne sont pas des soldes bancaires en temps réel.</p>${state.accounts.map(a=>`<div class="row"><span>${esc(a.name)}</span><b>${eur(accountProjected(a))}</b></div>`).join('')}<div class="actions"><button onclick="tab='transfers';render()">Voir les virements</button></div></div>`)};
+renderAccounts=function(){previousAccounts();$('accounts').insertAdjacentHTML('beforeend',`<div class="card"><h3>Soldes après virements enregistrés</h3><p class="muted">Estimations calculées depuis les soldes de référence et les virements manuels confirmés seulement. Elles n'incluent pas automatiquement les achats, prélèvements ou salaires : ce ne sont pas des soldes bancaires en temps réel.</p>${state.accounts.map(a=>`<div class="row"><span>${esc(a.name)}</span><b>${eur(accountProjected(a))}</b></div>`).join('')}<div class="actions"><button onclick="tab='transfers';render()">Voir les virements</button></div></div>`)};
 const previousBackup=renderBackup;
 renderBackup=function(){previousBackup();let days=state.backupLast?Math.floor((Date.now()-new Date(state.backupLast).getTime())/86400000):null;$('backup').insertAdjacentHTML('beforeend',`<div class="card"><h3>Suivi des sauvegardes</h3><p>${days===null?'Aucune sauvegarde exportée depuis cette version.':`Dernière sauvegarde : il y a ${days} jour(s).`}</p>${days===null||days>=7?'<div class="notice">Pense à exporter une sauvegarde JSON et à la conserver hors de ton téléphone.</div>':''}<div class="actions"><button onclick="exportCSV()">Exporter les dépenses et virements (CSV)</button></div><p class="muted">Le CSV sert à consulter tes opérations ; seul le JSON permet une restauration complète.</p></div>`)};
 const previousExport=exportData;
@@ -180,5 +191,194 @@ for(const [id,label,icon] of [['daily','Accueil','⌂'],['charges','Charges','�
 const fab=document.createElement('button');fab.id='v3Fab';fab.className='v3-fab';fab.textContent='+';fab.setAttribute('aria-label','Ajouter une dépense');fab.onclick=()=>{tab='daily';render();$('v3-expense-form')?.scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>$('expenseAmount')?.focus(),300)};document.body.appendChild(fab);
 
 document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{tab=b.dataset.tab;render()});render();
-if ('serviceWorker' in navigator && location.protocol==='https:') {window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));}
+if ('serviceWorker' in navigator && location.protocol==='https:') {window.addEventListener('load',()=>Promise.resolve().catch(()=>{}));}
+
+function v32Cents(n){const v=Number(n);return Number.isFinite(v)?Math.round((v+Number.EPSILON)*100):0}
+function v32CsvCell(v){const s=String(v??'');return /[;\n\r"]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s}
+
+function v32LocalDate(d){return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')}
+function v32ShiftDays(iso,n){const [y,m,d]=iso.split('-').map(Number);const dt=new Date(Date.UTC(y,m-1,d+n,12));return dt.toISOString().slice(0,10)}
+function v32Projection(days){
+ const today=v32LocalDate(new Date()),end=v32ShiftDays(today,days);
+ const accounts=Array.isArray(state.accounts)?state.accounts:[];
+ const balances={};let stale=[];
+ for(const a of accounts){
+  if(!a||!a.name||!Number.isFinite(Number(a.balance)))continue;
+  balances[a.name]=v32Cents(a.balance);
+  if(a.date!==today)stale.push(a.name);
+ }
+ const scheduled=typeof allScheduled==='function'?allScheduled(v32ShiftDays(today,1),end):[];
+ let expenseCents=0,ignored=0,fnzCents=0;
+ for(const ch of scheduled){
+  if(!ch||!Number.isFinite(Number(ch.amount)))continue;
+  const amount=v32Cents(ch.amount);
+  if(ch.isFNZ){
+   if(Object.hasOwn(balances,ch.account)&&Object.hasOwn(balances,'FNZ Sparkonto')){
+    balances[ch.account]-=amount;balances['FNZ Sparkonto']+=amount;fnzCents+=amount;
+   }else ignored++;
+  }else if(ch.isFixed){
+   if(Object.hasOwn(balances,ch.account)){balances[ch.account]-=amount;expenseCents+=amount}
+   else ignored++;
+  }else ignored++;
+ }
+ const totalCents=Object.values(balances).reduce((a,b)=>a+b,0);
+ return {days,end,expenseCents,fnzCents,ignored,balances,totalCents,stale,
+  reliable:stale.length===0&&ignored===0&&accounts.length>0};
+}
+function v32DailyAllowance(){
+ const today=v32LocalDate(new Date()),m=today.slice(0,7),last=new Date(+m.slice(0,4),+m.slice(5,7),0).getDate();
+ const days=Math.max(1,last-Number(today.slice(8))+1),b=budget(m);
+ if(b===null)return null;
+ const spent=expenses(m).reduce((a,x)=>a+v32Cents(x.amount),0);
+ const available=v32Cents(b)-spent;
+ return {days,available,daily:Math.floor(available/days)};
+}
+function v32ExtraDashboard(){
+ const allowance=v32DailyAllowance(),forecasts=[7,15,30,90].map(v32Projection);
+ return `<div class="card"><h2>Budget quotidien indicatif</h2>${allowance?`<strong style="font-size:25px">${eur(allowance.daily/100)} / jour</strong><p class="muted">${allowance.days} jour(s) restants · ${eur(allowance.available/100)} de reste à vivre après dépenses saisies. Les charges fixes sont déjà déduites du budget mensuel.</p>`:'<p>Renseigne d’abord le salaire réellement reçu pour afficher une estimation.</p>'}</div>
+ <div class="card"><h2>Scénarios à 7, 15, 30 et 90 jours</h2><p class="notice">Simulation basée sur les soldes de référence saisis, pas sur une connexion bancaire. Les dépenses variables futures et les salaires non reçus ne sont pas anticipés. Les virements FNZ déplacent les fonds sans réduire le patrimoine total. Ne pas confondre avec le reste à vivre.</p>
+ ${forecasts.map(f=>`<div class="row"><div><b>${f.days} jours — ${esc(f.end)}</b><div class="muted">${f.stale.length?'Soldes non actualisés : '+f.stale.map(esc).join(', '):'Soldes datés d’aujourd’hui'}${f.ignored?' · '+f.ignored+' échéance(s) non classée(s)':''}</div></div><b>${eur(f.totalCents/100)}</b></div><details><summary>Soldes simulés par compte</summary>${Object.entries(f.balances).map(([name,value])=>`<div class="row"><span>${esc(name)}</span><b>${eur(value/100)}</b></div>`).join('')}</details>`).join('')}</div>`;
+}
+function renderV32Analysis(){
+ const host=$('analysis');if(!host)return;
+ const rows=Array.isArray(state.expenses)?state.expenses.filter(x=>x&&typeof x==='object'&&/^\d{4}-\d{2}$/.test(String(x.month||''))):[];
+ const m=month, subset=rows.filter(x=>x.month===m), spent=subset.reduce((sum,x)=>sum+v32Cents(x.amount),0);
+ const by={};subset.forEach(x=>{const key=String(x.category||'Sans catégorie');by[key]=(by[key]||0)+v32Cents(x.amount)});
+ const max=Math.max(1,...Object.values(by));
+ const query=String(window.v32Query||'').toLowerCase(),filter=String(window.v32Category||'');
+ const visible=subset.filter(x=>(!filter||String(x.category||'Sans catégorie')===filter)&&(!query||String(x.name||'').toLowerCase().includes(query)||String(x.category||'Sans catégorie').toLowerCase().includes(query)));
+ const cats=[...new Set(subset.map(x=>String(x.category||'Sans catégorie')))].sort();
+ host.innerHTML=`<div class="card"><h2>Statistiques — ${esc(m)}</h2><p class="muted">Calculées uniquement à partir des dépenses enregistrées dans cette application. Les virements internes ne sont pas inclus.</p><div class="hero card"><span>Dépenses variables du mois</span><strong>${eur(spent/100)}</strong></div>${Object.entries(by).sort((a,b)=>b[1]-a[1]).map(([cat,value])=>`<div style="margin:14px 0"><div class="row"><b>${esc(cat)}</b><span>${eur(value/100)}</span></div><div style="height:13px;border-radius:8px;background:var(--panel2);overflow:hidden"><div style="height:100%;width:${Math.max(0,100*value/max)}%;background:var(--accent)"></div></div></div>`).join('')||'<p>Aucune dépense ce mois.</p>'}</div><div class="card"><h2>Recherche et filtres</h2><label for="v32-search">Rechercher</label><input id="v32-search" placeholder="Nom ou catégorie" value="${esc(window.v32Query||'')}"><label for="v32-cat">Catégorie</label><select id="v32-cat"><option value="">Toutes les catégories</option>${cats.map(c=>`<option value="${esc(c)}" ${c===filter?'selected':''}>${esc(c)}</option>`).join('')}</select><p class="muted">${visible.length} opération(s)</p>${visible.map(x=>`<div class="row"><span>${esc(x.date||'')} · ${esc(x.name||'')}<br><small>${esc(x.category||'Sans catégorie')}</small></span><b>${eur(x.amount)}</b></div>`).join('')||'<p>Aucun résultat.</p>'}<div class="actions"><button id="v32-csv">Exporter les dépenses visibles en CSV</button></div></div>${v32ExtraDashboard()}<div class="card"><h2>Confidentialité</h2><p class="muted">Cette bêta utilise un stockage distinct de la V3.1. Ne pas importer de sauvegarde réelle avant validation complète.</p></div>`;
+ const q=$('v32-search'),c=$('v32-cat');q.oninput=()=>{window.v32Query=q.value;const pos=q.selectionStart;renderV32Analysis();const next=$('v32-search');next.focus();next.setSelectionRange(pos,pos)};c.onchange=()=>{window.v32Category=c.value;renderV32Analysis()};
+ $('v32-csv').onclick=()=>{const content='Date;Nom;Catégorie;Montant (€)\r\n'+visible.map(x=>[x.date,x.name,x.category||'Sans catégorie',(v32Cents(x.amount)/100).toFixed(2).replace('.',',')].map(v32CsvCell).join(';')).join('\r\n');const url=URL.createObjectURL(new Blob(['\ufeff'+content],{type:'text/csv;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='mes-finances-v32-test-'+m+'.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1500)};
+}
+
+// V4.0: outils intégrés — aucune transmission réseau des données financières.
+state.v4=state.v4&&typeof state.v4==='object'?state.v4:{};
+state.v4.confirmed=state.v4.confirmed&&typeof state.v4.confirmed==='object'?state.v4.confirmed:{};
+state.v4.privateMode=Boolean(state.v4.privateMode);
+state.v4.reserveCents=Number.isSafeInteger(state.v4.reserveCents)?state.v4.reserveCents:0;
+const v4Date=(d)=>typeof d==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(d)&&!Number.isNaN(Date.parse(d+'T12:00:00Z'))&&new Date(d+'T12:00:00Z').toISOString().slice(0,10)===d;
+const v4MonthEnd=m=>new Date(Date.UTC(Number(m.slice(0,4)),Number(m.slice(5,7)),0)).toISOString().slice(0,10);
+const v4Money=x=>Math.round(Number(x)*100);
+const v4DateShift=(d,n)=>{const x=new Date(d+'T12:00:00Z');x.setUTCDate(x.getUTCDate()+n);return x.toISOString().slice(0,10)};
+function v4Recurrences(start,end){
+ const out=[];
+ for(const ch of state.charges){
+  if(!ch.active||!v4Date(ch.start)||!Number.isSafeInteger(Number(ch.interval))||Number(ch.interval)<1||!Number.isFinite(Number(ch.amount)))continue;
+  const n=Number(ch.interval),unit=String(ch.unit||'').toLowerCase(),limit=15000;
+  if(unit.startsWith('mois')){
+   const [sy,sm,sd]=ch.start.split('-').map(Number),a=sy*12+sm-1;
+   const [ey,em]=end.split('-').map(Number),last=ey*12+em-1;
+   for(let i=0;i<=last-a&&i<limit;i+=n){const m=a+i,y=Math.floor(m/12),mo=m%12+1,day=Math.min(sd,new Date(Date.UTC(y,mo,0)).getUTCDate());const date=[y,String(mo).padStart(2,'0'),String(day).padStart(2,'0')].join('-');if(date>=start&&date<=end&&(!ch.end||date<=ch.end))out.push({key:String(ch.id)+'|'+date,id:ch.id,name:ch.name,date,amountCents:v4Money(ch.amount),account:ch.account,isFNZ:ch.name==='FNZ Sparkonto'&&ch.account==='Courant',isFixed:ch.budget==='Fixe'});}
+  }else if(unit.startsWith('sem')||unit.startsWith('jour')){
+   const step=n*(unit.startsWith('sem')?7:1),skip=Math.max(0,Math.ceil((Date.parse(start+'T12:00:00Z')-Date.parse(ch.start+'T12:00:00Z'))/(step*86400000)));
+   for(let i=skip;i<skip+limit;i++){const date=v4DateShift(ch.start,i*step);if(date>end||ch.end&&date>ch.end)break;if(date>=start)out.push({key:String(ch.id)+'|'+date,id:ch.id,name:ch.name,date,amountCents:v4Money(ch.amount),account:ch.account,isFNZ:ch.name==='FNZ Sparkonto'&&ch.account==='Courant',isFixed:ch.budget==='Fixe'});}
+  }
+ }
+ return out.sort((a,b)=>a.date.localeCompare(b.date)||a.name.localeCompare(b.name));
+}
+function v4Reconcile(e){
+ const explicit=state.v4.confirmed[e.key];
+ if(explicit===true)return true;
+ // Une dépense non liée ne prouve pas qu'une charge a été payée.
+ return false;
+}
+function v4Confirm(key,paid){if(paid)state.v4.confirmed[key]=true;else delete state.v4.confirmed[key];save()}
+function v4Forecast(days){
+ const today=TODAY(),end=v4DateShift(today,days),balances={};
+ for(const a of state.accounts)if(a&&a.name&&Number.isFinite(Number(a.balance)))balances[a.name]=v4Money(a.balance);
+ // Les soldes de référence peuvent dater de plusieurs jours : ne jamais masquer cet avertissement.
+ const stale=state.accounts.filter(a=>a.date!==today).map(a=>a.name);
+ // Appliquer les virements manuels confirmés depuis la date de référence de chaque compte.
+ for(const a of state.accounts){if(!Object.hasOwn(balances,a.name))continue;for(const t of state.transfers){if(t.date>a.date&&t.date<=today){if(t.from===a.name)balances[a.name]-=v4Money(t.amount);if(t.to===a.name)balances[a.name]+=v4Money(t.amount)}}}
+ let missing=0,ignored=0;
+ for(const e of v4Recurrences(v4DateShift(today,1),end)){
+  if(v4Reconcile(e))continue;
+  if(e.isFNZ){if(Object.hasOwn(balances,e.account)&&Object.hasOwn(balances,'FNZ Sparkonto')){balances[e.account]-=e.amountCents;balances['FNZ Sparkonto']+=e.amountCents}else ignored++}
+  else if(e.isFixed&&Object.hasOwn(balances,e.account)){balances[e.account]-=e.amountCents;missing++}
+  else ignored++;
+ }
+ return {days,end,balances,total:Object.values(balances).reduce((a,b)=>a+b,0),stale,ignored,missing};
+}
+function v4RenderForecast(){
+ const forecasts=[7,15,30,90].map(v4Forecast);
+ $('v4forecast').innerHTML=`<div class="card"><h2>Prévisions financières</h2><p class="notice">Scénarios indicatifs à partir de tes soldes de référence. Les salaires non encore reçus et les achats futurs imprévus sont exclus. Les virements FNZ ne changent pas le total des comptes. Les charges sont considérées à payer sauf confirmation explicite.</p>${forecasts.map(f=>`<div class="listItem"><div class="listTop"><b>Dans ${f.days} jours · ${f.end}</b><b>${eur(f.total/100)}</b></div><div class="muted">${f.missing} charge(s) prévue(s) · ${f.ignored} échéance(s) ignorée(s)${f.stale.length?' · Soldes à actualiser : '+f.stale.map(esc).join(', '):''}</div><details><summary>Détail des comptes</summary>${Object.entries(f.balances).map(([k,v])=>`<div class="row"><span>${esc(k)}</span><b>${eur(v/100)}</b></div>`).join('')}</details></div>`).join('')}</div>`;
+}
+function v4RenderDue(){
+ const start=TODAY(),end=v4DateShift(start,90),items=v4Recurrences(start,end);
+ $('v4due').innerHTML=`<div class="card"><h2>Suivi des charges et abonnements</h2><p class="muted">Une échéance confirmée comme payée n'est plus projetée une deuxième fois. La confirmation n'enregistre pas une nouvelle dépense : les soldes de référence doivent déjà refléter le paiement.</p>${items.length?items.map(e=>`<div class="listItem"><div class="listTop"><div><b>${esc(e.name)}</b><div class="muted">${e.date} · ${esc(e.account)} ${e.isFNZ?'· Virement interne':''}</div></div><b>${eur(e.amountCents/100)}</b></div><label><input type="checkbox" ${v4Reconcile(e)?'checked':''} onchange="v4Confirm('${esc(e.key)}',this.checked)"> Déjà réglée / effectuée</label></div>`).join(''):'<p>Aucune échéance prévue.</p>'}</div>`;
+}
+function v4RenderPrivacy(){
+ const el=$('v4privacy');el.innerHTML=`<div class="card"><h2>Confidentialité</h2><p>Les données restent sur cet appareil. Aucun compte bancaire n'est connecté. Le masquage de l'écran n'est pas un verrouillage cryptographique.</p><button onclick="v4Mask()">Masquer immédiatement les montants</button><p class="muted">Pour protéger réellement les données, utilise le verrouillage du téléphone et conserve les sauvegardes JSON dans un endroit sûr.</p></div>`;
+}
+function v4Mask(){const overlay=document.createElement('div');overlay.id='v4overlay';overlay.style.cssText='position:fixed;inset:0;background:var(--bg);z-index:9999;display:grid;place-items:center;text-align:center;padding:24px';overlay.innerHTML='<div><h2>Écran masqué</h2><button id="v4unlock">Afficher à nouveau</button></div>';document.body.append(overlay);overlay.querySelector('#v4unlock').onclick=()=>overlay.remove()}
+function v4Render(){v4RenderForecast();v4RenderDue();v4RenderPrivacy()}
+for(const [id,label] of [['v4forecast','Prévisions'],['v4due','Échéances'],['v4privacy','Confidentialité']]){
+ const section=document.createElement('section');section.id=id;section.className='hidden';document.querySelector('main').appendChild(section);
+ const button=document.createElement('button');button.dataset.tab=id;button.textContent=label;button.onclick=()=>{tab=id;render()};document.querySelector('nav').appendChild(button);
+}
+const v4PreviousRender=render;
+render=function(){v4PreviousRender();for(const id of ['v4forecast','v4due','v4privacy'])$(id).classList.toggle('hidden',tab!==id);document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));v4Render()};
+render();
+</script>
+<script>
+// Sécurité supplémentaire de la bêta : validation avant restauration, sans toucher à la V3.1.
+const v32LegacyImport=importData;
+function v32ValidDate(d){return typeof d==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(d)&&!Number.isNaN(Date.parse(d+'T12:00:00Z'))&&new Date(d+'T12:00:00Z').toISOString().slice(0,10)===d}
+function v32ValidateBackup(o){
+ if(!o||typeof o!=='object'||Array.isArray(o))throw Error('Objet JSON attendu');
+ for(const key of ['charges','expenses','accounts'])if(!Array.isArray(o[key])||o[key].length>100000)throw Error('Liste '+key+' incorrecte');
+ if(!o.salaries||typeof o.salaries!=='object'||Array.isArray(o.salaries)||!o.carry||typeof o.carry!=='object'||Array.isArray(o.carry))throw Error('Salaires ou reports invalides');
+ const amount=x=>Number.isFinite(Number(x))&&Number(x)>=0&&Number(x)<=100000000;
+ if(o.accounts.some(x=>!x||typeof x.name!=='string'||!x.name.trim()||!Number.isFinite(Number(x.balance))))throw Error('Comptes invalides');
+ if(new Set(o.accounts.map(x=>x.name)).size!==o.accounts.length)throw Error('Noms de comptes dupliqués');
+ if(o.charges.some(x=>!x||typeof x.name!=='string'||!amount(x.amount)||!Number.isSafeInteger(Number(x.interval))||Number(x.interval)<1))throw Error('Charges invalides');
+ if(o.expenses.some(x=>!x||!amount(x.amount)||!v32ValidDate(x.date)))throw Error('Dépenses invalides');
+ if(o.charges.some(x=>!v32ValidDate(x.start)||x.end&&!v32ValidDate(x.end)))throw Error('Dates de charges invalides');
+ if(o.transfers!==undefined&&(!Array.isArray(o.transfers)||o.transfers.some(x=>!x||!amount(x.amount)||typeof x.from!=='string'||typeof x.to!=='string'||x.from===x.to)))throw Error('Virements invalides');
+ return true;
+}
+importData=async function(input){
+ const file=input.files?.[0];if(!file)return;
+ try{
+  if(file.size>12*1024*1024)throw Error('Fichier trop volumineux');
+  const parsed=JSON.parse(await file.text());v32ValidateBackup(parsed);
+  if(!confirm('ATTENTION : cette restauration remplace les données de la V4.0 uniquement. Continuer ?'))return;
+  const previous=state;
+  try{
+   const next=structuredClone(parsed);
+   normalizePrime(next);
+   next.transfers=Array.isArray(next.transfers)?next.transfers:[];
+   next.closures=next.closures&&typeof next.closures==='object'&&!Array.isArray(next.closures)?next.closures:{};
+   next.v3=next.v3&&typeof next.v3==='object'&&!Array.isArray(next.v3)?next.v3:{};
+   next.v3.categories=Array.isArray(next.v3.categories)&&next.v3.categories.length?next.v3.categories:V3_CATEGORIES.slice();
+   next.v3.goals=Array.isArray(next.v3.goals)?next.v3.goals:[];
+   next.v3.theme=['dark','light','auto'].includes(next.v3.theme)?next.v3.theme:'dark';
+   next.v3.calendarView=['list','date','timeline'].includes(next.v3.calendarView)?next.v3.calendarView:'list';
+   next.v3.predictionMode=next.v3.predictionMode||'simple';
+   next.v4=next.v4&&typeof next.v4==='object'&&!Array.isArray(next.v4)?next.v4:{};
+   next.v4.confirmed=next.v4.confirmed&&typeof next.v4.confirmed==='object'&&!Array.isArray(next.v4.confirmed)?next.v4.confirmed:{};
+   // Validate rendering before committing to storage; restore previous state if it fails.
+   state=next;
+   render();
+   localStorage.setItem(KEY,JSON.stringify(next));
+   v3Theme();
+  }catch(e){state=previous;try{render();v3Theme()}catch(_){}throw e}
+ }catch(e){alert('Importation refusée : '+e.message)}finally{input.value=''}
+};
+</script>
+<script>if('serviceWorker' in navigator && location.protocol==='https:')navigator.serviceWorker.register('./sw.js').catch(()=>{});</script><script>
+/* Keep the selected navigation tab visible on small screens. */
+(function(){
+ const nav=document.querySelector('nav');
+ if(!nav)return;
+ function reveal(){const active=nav.querySelector('button.active');if(!active)return;
+  const a=active.getBoundingClientRect(),n=nav.getBoundingClientRect();
+  if(a.left<n.left+5||a.right>n.right-5){active.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'});}
+ }
+ nav.addEventListener('click',()=>requestAnimationFrame(reveal));
+ window.addEventListener('resize',reveal);
+ setTimeout(reveal,100);
+})();
 </script></body></html>
