@@ -1,5 +1,5 @@
-const CACHE='mes-finances-v40-release-v3-accounts';
-const FILES=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
+const CACHE='mes-finances-october-salary-reconcile-20261102';
+const FILES=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./mountain-banner.jpg'];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(FILES)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('mes-finances-')&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim()))});
 self.addEventListener('fetch',event=>{

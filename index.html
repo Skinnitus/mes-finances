@@ -16,7 +16,205 @@ nav button[data-tab="v4forecast"]{min-width:100px!important}
 nav button[data-tab="v4privacy"]{min-width:115px!important}
 nav button::before{line-height:1.1}
 @media(max-width:420px){header h1{font-size:clamp(21px,6vw,28px)}.card{padding:15px}main{padding-left:12px;padding-right:12px}}
-</style></head><body><header><h1>Mes Finances V4.0 — Midnight Bordeaux Ultimate</h1><div class="muted">ÉDITION ULTIMATE · Installation séparée de la V3.1</div><div class="muted" style="color:#c7e0ec">Votre quotidien, en toute clarté</div></header><main><nav><button data-tab="daily" class="active">Mon quotidien</button><button data-tab="charges">Charges</button><button data-tab="accounts">Comptes</button><button data-tab="backup">Sauvegarde</button><button data-tab="analysis">Analyse & prévisions</button></nav><section id="daily"></section><section id="charges" class="hidden"></section><section id="accounts" class="hidden"></section><section id="backup" class="hidden"></section><section id="analysis" class="hidden"></section></main><script>
+
+/* DESIGN SYSTEM — Midnight Bordeaux / Bordeaux Minimal · 2026-11-02 */
+:root{--radius:22px;--shadow:0 14px 42px rgba(0,0,0,.13);--focus:#d58caa}
+html{scroll-behavior:smooth}body{font-family:Inter,Manrope,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.48;-webkit-font-smoothing:antialiased}
+header{position:relative;overflow:hidden;padding:27px max(20px,calc((100vw - 1100px)/2)) 31px;background:radial-gradient(circle at 94% 5%,rgba(199,96,139,.24),transparent 39%),linear-gradient(118deg,#12182a 5%,#2b1a32 55%,#51223d);border-bottom:1px solid #74405a}
+header:after{content:"";position:absolute;right:-45px;bottom:-100px;width:240px;height:240px;border-radius:50%;border:1px solid #ffffff1a;pointer-events:none}
+header h1{font-family:Manrope,Inter,system-ui,sans-serif;font-size:clamp(22px,3.5vw,31px);font-weight:800;letter-spacing:-.95px;line-height:1.2;max-width:780px}
+header .muted{margin-top:5px;letter-spacing:.2px}main{max-width:1100px;padding:22px 20px calc(110px + env(safe-area-inset-bottom,0px))}
+.card{border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);border-color:color-mix(in srgb,var(--line) 70%,transparent);margin-bottom:17px}
+.card h2{font-family:Manrope,Inter,system-ui,sans-serif;font-weight:800;letter-spacing:-.4px;font-size:21px}
+.card h3{font-size:17px;letter-spacing:-.2px}.hero{padding:25px;background:radial-gradient(circle at 95% 15%,#b44b7777,transparent 46%),linear-gradient(125deg,#68263f,#352544 85%);box-shadow:0 16px 35px #2a0b2450}
+.hero strong{font-size:clamp(36px,6vw,52px);font-weight:850;letter-spacing:-1.7px}
+button{border-radius:13px;min-height:43px;font-size:14px;font-weight:700}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+input,select{min-height:48px;border-radius:13px;padding:12px 13px}label{margin-top:15px;font-size:13px}
+.row{padding:12px 0}.listItem{padding:16px 0}.notice{border-radius:15px;padding:15px}
+.v3-tile{border-radius:17px;padding:17px}.v3-tiles{gap:12px}.v3-metric{letter-spacing:-1.2px}
+nav{justify-content:center!important;overflow:visible!important;scrollbar-width:none;padding:8px 12px calc(10px + env(safe-area-inset-bottom,0px))!important;gap:6px!important;box-shadow:0 -12px 35px #0003;backdrop-filter:blur(18px);background:color-mix(in srgb,var(--panel) 95%,transparent)}
+nav button{min-width:0!important;max-width:155px!important;flex:1 1 0!important;min-height:62px!important;font-size:12px!important;padding:7px 5px!important;white-space:normal!important}
+nav button[data-tab]:not([data-tab="daily"]):not([data-tab="charges"]):not([data-tab="accounts"]){display:none!important}
+nav button[data-tab="daily"],nav button[data-tab="charges"],nav button[data-tab="accounts"]{display:block!important}
+nav button::before{font-size:23px;margin-bottom:4px}
+nav button#finMoreButton{display:block!important}nav button#finMoreButton::before{content:"☷";font-size:23px}
+nav button.active,nav button#finMoreButton.active{color:#e9a6c2;background:var(--panel2)}
+#finMorePanel{position:fixed;z-index:31;bottom:calc(88px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);width:min(95vw,520px);max-height:min(65vh,600px);overflow-y:auto;padding:17px;background:var(--panel);border:1px solid var(--line);border-radius:22px;box-shadow:0 15px 60px #0009}
+#finMorePanel[hidden]{display:none!important}#finMorePanel h2{margin:3px 5px 12px;font-size:18px}#finMorePanel .fin-menu-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}#finMorePanel button{min-height:54px;text-align:left;padding:10px 14px}
+#finMorePanel button.active{background:var(--accent);color:white}
+#finMoreBackdrop{position:fixed;inset:0;background:#0007;z-index:30}#finMoreBackdrop[hidden]{display:none!important}
+.v3-fab{bottom:calc(91px + env(safe-area-inset-bottom,0px));width:58px;height:58px}
+:root[data-theme="light"] .hero{color:#fff} :root[data-theme="light"] .positive{color:#fbe6ef}
+@media(min-width:850px){main{padding-left:30px;padding-right:30px}header{padding-top:38px;padding-bottom:38px}nav{position:sticky;top:0;bottom:auto;max-width:1100px;margin:0 auto 24px!important;border:1px solid var(--line);border-radius:19px;padding:7px!important;box-shadow:0 5px 20px #0002}nav button{min-height:56px!important}#finMorePanel{bottom:auto;top:115px}#finMoreBackdrop{background:#0004}.v3-fab{right:35px;bottom:35px}}
+@media(max-width:420px){main{padding:15px 12px calc(108px + env(safe-area-inset-bottom,0px))}.card{padding:17px;border-radius:19px}.grid{grid-template-columns:1fr 1fr;gap:10px}header{padding:23px 17px 25px}nav button{font-size:11px!important}.v3-tiles{grid-template-columns:1fr 1fr}}
+@media(max-width:350px){.grid{grid-template-columns:1fr}.v3-tiles{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+
+/* Mobile visual refinement — preserve existing financial logic */
+:root{--ui-ease:cubic-bezier(.2,.8,.2,1)}
+body{font-feature-settings:"tnum" 1}
+.card{overflow-wrap:break-word}
+.card .listItem{padding:13px 0}
+.card .listTop{align-items:flex-start;gap:12px}
+.card .listTop>div:first-child{min-width:0;flex:1}
+.card .listTop>b{white-space:nowrap;font-size:15px;font-variant-numeric:tabular-nums}
+.card .listTop .muted{margin-top:3px;line-height:1.45}
+/* Native checkbox must never inherit the full-width text input styling. */
+input[type="checkbox"]{appearance:none;-webkit-appearance:none;display:inline-grid;place-content:center;width:21px!important;height:21px!important;min-height:21px!important;flex:0 0 21px;margin:0!important;padding:0!important;border-radius:6px!important;border:1.5px solid var(--muted)!important;background:var(--panel2)!important;vertical-align:middle;cursor:pointer}
+input[type="checkbox"]:checked{background:var(--accent)!important;border-color:var(--accent)!important}
+input[type="checkbox"]:checked::after{content:"✓";font-size:15px;font-weight:800;color:white;line-height:1}
+input[type="radio"]{width:20px!important;min-height:20px!important;height:20px!important;padding:0!important;vertical-align:middle}
+#v4due .listItem label{display:flex;align-items:center;gap:10px;margin:10px 0 0;font-size:12px;color:var(--muted);font-weight:600;line-height:1.4}
+#v4due .listItem{padding:13px 0}
+/* Compact category management and action rows */
+.card .row{min-width:0;gap:12px;flex-wrap:wrap}
+.card .row>div:first-child{min-width:0;flex:1 1 130px}
+.card .row>.actions{display:flex;flex:0 1 auto;gap:7px;margin:0;flex-wrap:nowrap}
+.card .row>.actions button,.card .row>button{min-height:36px;padding:7px 10px;font-size:12px;border-radius:10px}
+.card .row .actions button.danger{background:transparent;color:#e99bae;border-color:var(--line)}
+.card .row .actions button:not(.danger){background:var(--panel2)}
+.card .row .actions button{white-space:nowrap}
+@media(max-width:540px){
+ header{padding:20px 18px 21px}
+ header h1{font-size:23px;line-height:1.2}
+ main{padding-top:14px}
+ .card{padding:16px!important;margin-bottom:12px;border-radius:17px!important}
+ .card h2{font-size:18px}
+ .card .row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center}
+ .card .row>.actions{justify-content:flex-end}
+ .card .row>.actions button{font-size:11px;padding:7px 8px;min-height:34px}
+ .card .listItem .listTop{gap:8px}
+ .card .listItem .listTop b{font-size:14px}
+ .card .listItem .muted{font-size:12px}
+}
+@media(max-width:365px){.card .row{grid-template-columns:1fr}.card .row>.actions{justify-content:flex-start}}
+
+/* Midnight Bordeaux — premium production visual layer */
+:root{--bg:#101421;--panel:#1b2030;--panel2:#26283a;--ink:#f8f3f6;--muted:#b5aeba;--line:#38374a;--accent:#c0587b;--accent2:#a28ac9;--button:#30283d;--hero1:#702744;--hero2:#292744;--radius:21px;--shadow:0 10px 30px #07071135}
+:root[data-theme="light"]{--bg:#f7f4f4;--panel:#ffffff;--panel2:#f5edf0;--ink:#27202d;--muted:#736773;--line:#e9dfe5;--accent:#903555;--accent2:#745c98;--button:#f4e8ee;--hero1:#802e4d;--hero2:#514069;--shadow:0 10px 28px #45293c12}
+body{background:var(--bg);color:var(--ink);font-size:15px;line-height:1.5}
+header{background:radial-gradient(circle at 87% -25%,#bb618b45,transparent 48%),linear-gradient(120deg,#151b2a,#32203a 67%,#552541);border-bottom:1px solid #ffffff14;padding:26px max(18px,calc((100vw - 1100px)/2)) 25px}
+header h1{font-size:clamp(22px,3.1vw,30px);max-width:620px;letter-spacing:-.85px}header .muted{font-size:12px;letter-spacing:.6px}
+header .muted:last-child{font-size:13px;letter-spacing:0;opacity:.84}
+main{max-width:1050px;padding:18px 15px calc(118px + env(safe-area-inset-bottom,0px))}
+.card{background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:20px;padding:19px;margin-bottom:14px}
+.card h2{font-size:19px}.card h3{font-size:16px}.muted{color:var(--muted)}
+.hero{background:radial-gradient(circle at 100% 0%,#e394ad35,transparent 52%),linear-gradient(120deg,#772d4c,#332843);border:1px solid #9e5878;padding:24px;box-shadow:0 14px 36px #3115274d}
+.hero strong{font-size:clamp(38px,8vw,54px);letter-spacing:-2px;color:#fff}.hero .positive{color:#fff}.hero .negative{color:#ffcad1}
+.v3-tiles{gap:10px}.v3-tile{border-radius:15px;background:var(--panel2);padding:15px}.v3-tile b{font-size:19px}
+input:not([type="checkbox"]):not([type="radio"]),select,textarea{background:var(--panel2);border:1px solid var(--line);border-radius:12px;color:var(--ink);min-width:0;max-width:100%;min-height:45px}
+input[type="checkbox"]{appearance:none!important;-webkit-appearance:none!important;display:inline-grid!important;place-items:center!important;vertical-align:middle!important;width:19px!important;height:19px!important;min-width:19px!important;min-height:19px!important;max-width:19px!important;margin:0!important;padding:0!important;border:1.5px solid var(--muted)!important;border-radius:5px!important;background:var(--panel2)!important;flex:none!important}
+input[type="checkbox"]:checked{background:var(--accent)!important;border-color:var(--accent)!important}
+input[type="checkbox"]:checked:after{content:'✓';color:#fff;font-size:13px;line-height:1}
+#v4due .listItem{padding:12px 0}#v4due .listItem label{display:flex!important;align-items:center!important;gap:10px!important;font-size:12px!important;margin:9px 0 0!important}
+.listTop{align-items:flex-start}.listTop>div:first-child{flex:1;min-width:0}.listTop>b{flex:none;white-space:nowrap}
+.row{gap:10px;min-width:0}.row>div:first-child{min-width:0}.row>.actions{margin:0;display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
+.row>.actions button{font-size:12px;padding:7px 10px;min-height:35px;white-space:nowrap}.row>.actions button.danger{background:transparent;color:#e9a2b6}
+button{border-radius:11px;min-height:40px;padding:9px 13px;font-size:13px}button.primary{background:linear-gradient(120deg,#ae4769,#79395e);border-color:#b56888}
+nav{justify-content:center!important;gap:4px!important;overflow:hidden!important;background:var(--panel);border-top:1px solid var(--line);padding:8px 8px calc(9px + env(safe-area-inset-bottom,0px))!important}
+nav button{flex:1 1 0!important;min-width:0!important;max-width:150px!important;min-height:61px!important;font-size:11px!important;white-space:normal!important;padding:6px 3px!important}
+nav button.active{background:var(--panel2);color:#ed9cba}nav button::before{font-size:21px}nav button#finMoreButton::before{content:'☷';font-size:23px}
+#finMorePanel{background:var(--panel);border:1px solid var(--line)}#finMorePanel button{background:var(--panel2)}
+.v3-fab{width:54px;height:54px;bottom:calc(91px + env(safe-area-inset-bottom,0px))}
+/* Compact transaction/category rows without losing accessible touch targets */
+#categories .row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;padding:12px 0}
+#categories .row>.actions{display:flex;flex-wrap:nowrap;gap:6px}#categories .row>.actions button{padding:8px;font-size:11px;min-height:37px}
+#v4due .listTop b{font-size:14px}#v4due .listItem .muted{font-size:12px}
+@media(max-width:430px){main{padding-left:12px;padding-right:12px}.card{padding:16px!important}.grid{gap:9px}header{padding:22px 17px}header h1{font-size:22px}.hero{padding:21px!important}#categories .row>.actions button{padding:7px 6px;font-size:10px}}
+@media(max-width:360px){#categories .row{grid-template-columns:1fr}#categories .row>.actions{justify-content:flex-start;margin-top:7px}}
+@media(min-width:850px){main{padding-top:24px}nav{position:sticky;top:0;bottom:auto;max-width:1050px;border-radius:16px;border:1px solid var(--line);margin:0 auto 18px!important}.card{padding:25px}}
+
+/* Livraison intégrée : densité premium, lisibilité et composants tactiles */
+:root{--radius:18px;--shadow:0 8px 28px rgba(4,5,17,.16)}
+html{scroll-behavior:smooth;scroll-padding-bottom:110px}
+body{font-feature-settings:"tnum" 1;-webkit-tap-highlight-color:transparent}
+header{padding-top:22px;padding-bottom:20px;background:radial-gradient(ellipse at 90% 0%,rgba(171,75,111,.27),transparent 55%),linear-gradient(118deg,#111827,#242034 62%,#462139)}
+header h1{font-size:clamp(20px,2.7vw,27px);letter-spacing:-.65px;line-height:1.25}
+header .muted{font-size:11px!important;letter-spacing:.06em}
+main{max-width:1050px}
+.card{border-radius:18px;padding:19px;box-shadow:var(--shadow)}
+.card h2{font-weight:780;letter-spacing:-.4px}
+.card h3{letter-spacing:-.2px}
+.hero{border-radius:22px;background:radial-gradient(ellipse at 95% -10%,rgba(251,169,203,.24),transparent 52%),linear-gradient(125deg,#7a304f,#392740 75%)}
+.hero .v3-metric,.hero strong{font-variant-numeric:tabular-nums;letter-spacing:-1.7px;line-height:1.1}
+.v3-tile{border:1px solid var(--line);min-width:0;overflow-wrap:anywhere}
+.v3-tile b{font-size:clamp(15px,3vw,19px);font-variant-numeric:tabular-nums}
+.row,.listItem{border-color:var(--line)}
+.row{padding:12px 0;align-items:center}
+.listItem{padding:12px 0}
+.listTop{align-items:center;gap:10px}
+.listTop b{font-variant-numeric:tabular-nums}
+.actions{align-items:center}
+button{transition:background .15s ease,transform .12s ease,border-color .15s ease;touch-action:manipulation}
+button:active{transform:scale(.98)}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #eaa0bc;outline-offset:2px}
+button.danger{background:rgba(161,55,87,.16);color:#f2a4bb;border:1px solid rgba(212,98,133,.25)}
+input[type="checkbox"]{appearance:auto!important;-webkit-appearance:checkbox!important;accent-color:var(--accent)!important;display:inline-block!important;width:18px!important;height:18px!important;min-width:18px!important;min-height:18px!important;max-width:18px!important;margin:0!important;padding:0!important;flex:0 0 18px!important;border-radius:4px!important;vertical-align:middle!important}
+input[type="checkbox"]:checked:after{content:none!important}
+#v4due .listItem label{display:flex!important;align-items:center!important;gap:12px!important;min-height:40px;font-size:13px!important;line-height:1.35!important}
+#v4due .listItem{padding:11px 0}
+#categories .row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center}
+#categories .row>.actions{margin:0;display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}
+#categories .row>.actions button{font-size:11px;min-height:36px;padding:7px 9px}
+#categories .row>.actions button.danger{background:transparent}
+nav button[data-tab="goals"]{display:none!important}
+#finMorePanel{border-radius:22px;padding:20px;box-shadow:0 18px 60px rgba(0,0,0,.55)}
+#finMorePanel button{border:1px solid var(--line);border-radius:13px}
+#finMoreBackdrop:not([hidden]){backdrop-filter:blur(3px)}
+@media(max-width:600px){
+ header{padding:19px 17px 18px}header h1{font-size:21px}
+ main{padding:13px 11px calc(113px + env(safe-area-inset-bottom,0px))}
+ .card{padding:16px!important;margin-bottom:12px;border-radius:17px}
+ .hero{padding:20px!important}
+ .hero .v3-metric{font-size:clamp(31px,9vw,43px)}
+ .v3-tiles{gap:8px}.v3-tile{padding:12px}
+ .card .row{display:flex;flex-wrap:wrap;gap:8px}
+ .card .row>.actions{flex:0 0 auto;margin-left:auto;justify-content:flex-end}
+ #categories .row{display:grid;grid-template-columns:minmax(0,1fr) auto}
+ #categories .row>.actions{flex-wrap:nowrap}
+ #categories .row>.actions button{font-size:10px;min-height:34px;padding:6px 7px}
+ nav{padding:7px 8px calc(8px + env(safe-area-inset-bottom,0px))!important}
+ nav button{min-height:60px!important;line-height:1.3}
+ #finMorePanel{bottom:calc(82px + env(safe-area-inset-bottom,0px));max-height:67vh}
+}
+@media(max-width:350px){#categories .row{grid-template-columns:1fr}#categories .row>.actions{justify-content:flex-start}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}button{transition:none}}
+
+/* Direction artistique : reproduction fonctionnelle du concept approuvé phase 1. */
+:root{--bg:#111218;--panel:#1b1d25;--panel2:#26252e;--ink:#f8f4f6;--muted:#aaa3af;--line:#34313c;--accent:#b64a72;--button:#332934;--shadow:0 12px 32px rgba(0,0,0,.19)}
+:root[data-theme="light"]{--bg:#fbf6f8;--panel:#fff;--panel2:#f8edf2;--ink:#29212b;--muted:#7c6c79;--line:#eee1e8;--accent:#9d3157;--button:#f4e6ec;--shadow:0 12px 32px rgba(72,25,48,.08)}
+body{font-family:Inter,"Segoe UI",system-ui,sans-serif;letter-spacing:-.012em}
+.concept-header{position:relative;min-height:166px;padding:22px max(20px,calc((100vw - 1140px)/2)) 38px!important;overflow:hidden;background:linear-gradient(90deg,rgba(48,15,30,.97) 0%,rgba(63,22,42,.88) 34%,rgba(29,23,38,.25) 100%),url('./mountain-banner.jpg') center 44%/cover no-repeat!important;border-bottom:0!important}
+.concept-header:after{content:"";position:absolute;bottom:0;left:0;right:0;height:35px;background:linear-gradient(transparent,var(--bg));pointer-events:none}
+.concept-brand{display:flex;align-items:center;gap:13px;position:relative;z-index:1}.concept-logo{height:49px;width:49px;border-radius:14px;box-shadow:0 6px 22px #10071166}.concept-brand h1{font-size:clamp(23px,3vw,32px)!important;font-weight:800;letter-spacing:-1px;color:#fff;margin:0}.concept-tagline{font-size:12px;line-height:1.45;color:#f4dfe8;max-width:410px;margin-top:4px}.concept-version{display:inline-block;position:relative;z-index:1;margin:17px 0 0 63px;color:#f5c4d4;font-size:10px;font-weight:700;letter-spacing:1.3px}
+main{max-width:1150px!important;padding-top:0!important}
+.card{background:var(--panel)!important;border:1px solid var(--line)!important;border-radius:18px!important;box-shadow:var(--shadow)!important;padding:18px!important}
+.card h2,.card h3{font-weight:780;letter-spacing:-.45px}
+.hero{position:relative;background:linear-gradient(115deg,#802542 0%,#9d355d 55%,#4d2449 100%)!important;border:1px solid #b85a7b!important;box-shadow:0 14px 34px rgba(88,21,50,.28)!important;overflow:hidden}
+.hero:before{content:"";position:absolute;right:-55px;top:-65px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,#fff2 0%,transparent 70%);pointer-events:none}
+.hero strong,.hero .v3-metric{font-size:clamp(34px,7vw,47px)!important;letter-spacing:-1.9px!important;font-weight:830}
+.hero .muted{color:#f8dfe9!important}
+.v3-tiles{gap:9px}.v3-tile{background:var(--panel2);border:1px solid var(--line);border-radius:14px;box-shadow:none;padding:14px}.v3-tile b{font-size:17px}
+button{border-radius:12px;font-weight:650}button.primary{background:linear-gradient(110deg,#b93e65,#852b56)!important;border-color:#bc5b7e!important;color:#fff!important}
+button.danger{background:rgba(163,56,84,.12)!important;color:var(--accent)!important;border:1px solid rgba(173,76,108,.28)!important}
+input:not([type=checkbox]),select,textarea{background:var(--panel2)!important;border:1px solid var(--line)!important;border-radius:11px!important;min-height:43px;color:var(--ink)!important}
+.row,.listItem{border-color:var(--line)!important}.row{gap:12px}.row b,.listTop b{font-weight:750}
+#categories .row{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:12px;padding:13px 0!important}
+#categories .row>.actions{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;gap:6px!important;align-items:center}
+#categories .row>.actions button{font-size:11px!important;padding:8px 9px!important;min-height:34px!important}
+#v4due .listItem{padding:11px 0!important}#v4due .listItem label{display:flex!important;gap:10px!important;align-items:center!important}
+input[type=checkbox]{width:19px!important;height:19px!important;min-width:19px!important;max-width:19px!important;min-height:19px!important;appearance:auto!important;-webkit-appearance:checkbox!important;accent-color:#bb4a71!important;flex:0 0 19px!important;box-shadow:none!important}
+nav{background:color-mix(in srgb,var(--panel) 97%,transparent)!important;backdrop-filter:blur(16px);border-color:var(--line)!important;box-shadow:0 -8px 26px #0002!important}
+nav button{color:var(--muted)!important;border:0!important;min-width:0!important}nav button.active{background:var(--panel2)!important;color:var(--accent)!important}
+#finMorePanel{background:var(--panel)!important}#finMorePanel button{background:var(--panel2)!important}
+.v3-fab{background:linear-gradient(135deg,#c34369,#852f5a)!important;border:1px solid #d27b97!important;width:54px;height:54px;box-shadow:0 9px 25px #140b1866}
+@media(max-width:650px){.concept-header{min-height:165px;padding:20px 17px 37px!important;background-position:center!important}.concept-logo{width:43px;height:43px;border-radius:12px}.concept-brand h1{font-size:23px!important}.concept-tagline{font-size:11px}.concept-version{margin-left:56px;font-size:9px}main{padding:0 11px calc(104px + env(safe-area-inset-bottom,0px))!important}.card{padding:16px!important;margin-bottom:11px!important}.hero{padding:20px!important}nav{padding:7px 5px calc(7px + env(safe-area-inset-bottom,0px))!important}nav button{font-size:11px!important;padding:9px 3px!important;min-height:59px!important}nav button::before{font-size:20px!important}#categories .row>.actions button{padding:7px 6px!important;font-size:10px!important}}
+@media(min-width:850px){.concept-header{min-height:192px;padding-top:30px!important}.concept-brand h1{font-size:32px!important}main{padding:0 24px 45px!important}nav{position:sticky;top:0;bottom:auto;margin:0 auto 18px!important;max-width:1120px!important;border-radius:0 0 17px 17px!important;z-index:24}.card{padding:23px!important}#daily{max-width:100%}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important}}
+</style><style>
+/* Visual dashboard and actual monthly calendar */
+.fin-cal-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:16px}.fin-cal-head button{width:auto;min-width:42px;padding:10px}.fin-calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}.fin-weekday{text-align:center;color:var(--muted);font-size:12px;font-weight:700;padding:9px 0}.fin-day{position:relative;min-width:0;min-height:60px;padding:7px 3px;border:1px solid var(--border,rgba(180,130,150,.18));border-radius:12px;background:var(--panel2,#242331);color:var(--text,#fff);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:5px;font-size:14px}.fin-day.fin-out{opacity:.26}.fin-day.fin-today{outline:2px solid var(--accent,#b34370)}.fin-day.fin-selected{background:linear-gradient(140deg,#a22e57,#592347);color:white;border-color:#d47799}.fin-dots{display:flex;gap:3px;justify-content:center;flex-wrap:wrap}.fin-dot{height:6px;width:6px;border-radius:50%;background:#e56b88}.fin-dot.income{background:#4bc89a}.fin-dot.expense{background:#e9ae65}.fin-events{margin-top:16px}.fin-event{display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid rgba(150,120,140,.18)}.fin-event small{display:block;color:var(--muted);margin-top:3px}.fin-chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.fin-chart-panel{background:var(--panel2,#242331);border-radius:18px;padding:16px;min-width:0}.fin-chart-panel h3{font-size:15px;margin:0 0 14px}.fin-chart-svg{display:block;width:100%;height:auto;max-height:210px}.fin-legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;font-size:12px}.fin-legend span{display:inline-flex;align-items:center;gap:5px}.fin-legend i{width:8px;height:8px;border-radius:50%;display:inline-block}.fin-visual-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.fin-visual-summary div{padding:12px;background:var(--panel2,#242331);border-radius:12px;min-width:0}.fin-visual-summary small{display:block;color:var(--muted);font-size:11px}.fin-visual-summary strong{display:block;margin-top:6px;font-size:clamp(13px,3.5vw,20px);overflow-wrap:anywhere}@media(max-width:560px){.fin-chart-grid{grid-template-columns:1fr}.fin-day{min-height:51px;border-radius:9px}.fin-calendar{gap:3px}.fin-visual-summary{grid-template-columns:1fr 1fr}}
+</style></head><body><header class="concept-header"><div class="concept-brand"><img src="./icon-192.png" alt="" class="concept-logo"><div><h1>Mes Finances</h1><div class="concept-tagline">Gérer mon budget, suivre mes comptes et garder le cap</div></div></div><span class="concept-version">MIDNIGHT BORDEAUX · V4.0</span></header><main><nav><button data-tab="daily" class="active">Mon quotidien</button><button data-tab="charges">Charges</button><button data-tab="accounts">Comptes</button><button data-tab="backup">Sauvegarde</button><button data-tab="analysis">Analyse & prévisions</button></nav><section id="daily"></section><section id="charges" class="hidden"></section><section id="accounts" class="hidden"></section><section id="backup" class="hidden"></section><section id="analysis" class="hidden"></section></main><script>
 const SEED={"charges":[],"accounts":[{"name":"Courant","balance":0,"date":"2026-10-28"},{"name":"Épargne","balance":0,"date":"2026-10-28"},{"name":"FNZ Sparkonto","balance":0,"date":"2026-10-28"}],"salaries":{},"carry":{},"expenses":[],"octoberOpening":0,"octoberRemainingCharges":0};
 const KEY='mes-finances-v40-ultimate-local-v1';
 let state;try{state=JSON.parse(localStorage.getItem(KEY))||structuredClone(SEED)}catch{state=structuredClone(SEED)}
@@ -29,25 +227,18 @@ function save(){localStorage.setItem(KEY,JSON.stringify(state));render()}
 function shiftMonth(m,n){let [y,mo]=m.split('-').map(Number);return new Date(Date.UTC(y,mo-1+n,1)).toISOString().slice(0,7)}
 function addMonths(date,n){let d=new Date(date+'T12:00:00Z'),day=d.getUTCDate();d.setUTCDate(1);d.setUTCMonth(d.getUTCMonth()+n);let max=new Date(Date.UTC(d.getUTCFullYear(),d.getUTCMonth()+1,0)).getUTCDate();d.setUTCDate(Math.min(day,max));return d.toISOString().slice(0,10)}
 function advance(date,unit,interval){if(unit.toLowerCase().startsWith('mois'))return addMonths(date,interval);let d=new Date(date+'T12:00:00Z');d.setUTCDate(d.getUTCDate()+interval*(unit.toLowerCase().startsWith('semaine')?7:1));return d.toISOString().slice(0,10)}
-function due(ch,m){if(!ch.active||ch.budget!=='Fixe'||!ch.start||ch.interval<1)return 0;let count=0,d=ch.start,limit=0,end=m+'-31';while(d<=end&&limit++<1200){if(d.slice(0,7)===m&&(!ch.end||d<=ch.end))count++;let next=advance(d,ch.unit,ch.interval);if(next<=d)break;d=next}return count*Number(ch.amount||0)}
+function due(ch,m){
+ if(!ch.active||ch.budget!=='Fixe')return 0;
+ const first=m+'-01',last=v4MonthEnd(m);
+ return v4Recurrences(first,last).filter(e=>String(e.id)===String(ch.id)).reduce((sum,e)=>sum+e.amountCents,0)/100;
+}
 function monthlyDueDetails(m){
-  const entries=[], excluded=[];
-  const monthEnd=new Date(Date.UTC(Number(m.slice(0,4)),Number(m.slice(5,7)),0)).toISOString().slice(0,10);
-  for(const ch of state.charges){
-    if(!ch.active||!ch.start||!(Number(ch.interval)>0))continue;
-    let d=ch.start,iterations=0;
-    while(d<=monthEnd&&iterations++<1200){
-      if(d.slice(0,7)===m&&(!ch.end||d<=ch.end)){
-        const item={id:ch.id,name:ch.name,date:d,amount:Number(ch.amount||0),account:ch.account};
-        (ch.budget==='Fixe'?entries:excluded).push(item);
-      }
-      const next=advance(d,ch.unit,Number(ch.interval));
-      if(next<=d)break;
-      d=next;
-    }
+  const entries=[],excluded=[];
+  const first=m+'-01',last=v4MonthEnd(m);
+  for(const e of v4Recurrences(first,last)){
+    const item={id:e.id,name:e.name,date:e.date,amount:e.amountCents/100,account:e.account};
+    (e.isFixed?entries:excluded).push(item);
   }
-  entries.sort((a,b)=>a.date.localeCompare(b.date)||a.name.localeCompare(b.name));
-  excluded.sort((a,b)=>a.date.localeCompare(b.date)||a.name.localeCompare(b.name));
   return {entries,excluded,total:Math.round(entries.reduce((sum,e)=>sum+Math.round(e.amount*100),0))/100};
 }
 function renderMonthlyDueDetails(m){
@@ -69,7 +260,7 @@ function editExpense(id){let e=state.expenses.find(x=>x.id===id),name=prompt('No
 function renderCharges(){let c=editCharge===null?null:state.charges.find(x=>x.id===editCharge);$('charges').innerHTML=`<div class="card"><h2>${c?'Modifier':'Ajouter'} une charge régulière</h2><label>Nom</label><input id="chName" value="${esc(c?.name||'')}"><div class="grid"><div><label>Montant (€)</label><input id="chAmount" type="number" step="0.01" min="0" value="${c?.amount??''}"></div><div><label>Première échéance</label><input id="chStart" type="date" value="${c?.start||month+'-01'}"></div><div><label>Tous les…</label><input id="chInterval" type="number" min="1" step="1" value="${c?.interval||1}"></div><div><label>Unité</label><select id="chUnit">${['Jours','Semaines','Mois'].map(u=>`<option ${c?.unit===u?'selected':''}>${u}</option>`).join('')}</select></div><div><label>Compte débité</label><select id="chAccount">${state.accounts.map(a=>`<option ${c?.account===a.name?'selected':''}>${esc(a.name)}</option>`).join('')}</select></div><div><label>Date de fin (facultative)</label><input id="chEnd" type="date" value="${c?.end||''}"></div></div><div class="actions"><button class="primary" onclick="saveCharge()">Enregistrer</button>${c?'<button onclick="editCharge=null;render()">Annuler</button>':''}</div></div>${renderMonthlyDueDetails(month)}<div class="card"><h3>Charges régulières (${state.charges.length})</h3><p class="muted">Les charges actives sont réservées dès le début de chaque mois. Modifier une charge change les budgets recalculés.</p>${state.charges.map(ch=>`<div class="listItem"><div class="listTop"><div class="wrap"><b>${esc(ch.name)}</b><div class="muted">${esc(ch.interval)} ${esc(ch.unit.toLowerCase())} · ${esc(ch.account)} · ${ch.active?'Active':'Désactivée'}</div></div><b>${eur(ch.amount)}</b></div><div class="actions"><button onclick="editCharge=${ch.id};render();window.scrollTo(0,0)">Modifier</button><button onclick="toggleCharge(${ch.id})">${ch.active?'Désactiver':'Activer'}</button><button class="danger" onclick="deleteCharge(${ch.id})">Supprimer</button></div></div>`).join('')}</div>`}
 function saveCharge(){let name=$('chName').value.trim(),amount=Number($('chAmount').value),start=$('chStart').value,interval=Number($('chInterval').value),unit=$('chUnit').value,account=$('chAccount').value,end=$('chEnd').value;if(!name||!start||amount<0||!Number.isInteger(interval)||interval<1||end&&end<start)return alert('Vérifie les informations de la charge.');let obj={name,amount,start,interval,unit,account,end,budget:'Fixe',active:true};if(editCharge!==null){let c=state.charges.find(x=>x.id===editCharge);Object.assign(c,obj)}else state.charges.push({id:Date.now(),...obj});editCharge=null;save()}
 function toggleCharge(id){let c=state.charges.find(x=>x.id===id);c.active=!c.active;save()}function deleteCharge(id){if(confirm('Supprimer cette charge ?')){state.charges=state.charges.filter(x=>x.id!==id);save()}}
-function renderAccounts(){$('accounts').innerHTML=`<div class="card"><h2>Mes trois comptes</h2><p class="muted">Soldes de référence importés de ton Excel. Les budgets ne sont pas des soldes bancaires en temps réel.</p>${state.accounts.map((a,i)=>`<div class="listItem"><b>${esc(a.name)}</b><div class="muted">Au ${esc(a.date)}</div><label>Solde de référence (€)</label><input type="number" step="0.01" value="${a.balance}" onchange="state.accounts[${i}].balance=Number(this.value);save()"><label>Date du solde</label><input type="date" value="${a.date}" onchange="state.accounts[${i}].date=this.value;save()"></div>`).join('')}</div>`}
+function renderAccounts(){$('accounts').innerHTML=`<div class="card"><h2>Mes trois comptes</h2><p class="muted">Soldes de référence renseignés ou importés. Les budgets ne sont pas des soldes bancaires en temps réel.</p>${state.accounts.map((a,i)=>`<div class="listItem"><b>${esc(a.name)}</b><div class="muted">Au ${esc(a.date)}</div><label>Solde de référence (€)</label><input type="number" step="0.01" value="${a.balance}" onchange="state.accounts[${i}].balance=Number(this.value);state.accounts[${i}].baselineUpdatedAt=Date.now();save()"><label>Date du solde</label><input type="date" value="${a.date}" onchange="state.accounts[${i}].date=this.value;state.accounts[${i}].baselineUpdatedAt=Date.now();save()"></div>`).join('')}</div>`}
 function renderBackup(){$('backup').innerHTML=`<div class="card"><h2>Sauvegarder mes données</h2><p>Les données sont enregistrées sur cet appareil dans le navigateur. Effacer les données du navigateur peut les supprimer. Fais des sauvegardes régulières.</p><div class="actions"><button class="primary" onclick="exportData()">Exporter une sauvegarde JSON</button></div><label>Restaurer une sauvegarde JSON</label><input type="file" accept=".json,application/json" onchange="importData(this)"></div><div class="card"><h3>Informations</h3><p class="muted">Application hors ligne, sans connexion bancaire. La paie reçue un mois finance le mois suivant. Les charges FNZ restent réservées dans les charges fixes.</p></div>`}
 function exportData(){let blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='mes-finances-sauvegarde-'+new Date().toISOString().slice(0,10)+'.json';a.click();URL.revokeObjectURL(a.href)}
 async function importData(input){let f=input.files[0];if(!f)return;try{let obj=JSON.parse(await f.text());if(!Array.isArray(obj.charges)||!Array.isArray(obj.expenses)||!Array.isArray(obj.accounts))throw Error();if(!confirm('Remplacer les données actuelles par cette sauvegarde ?'))return;state=normalizePrime(obj);save()}catch{alert('Sauvegarde invalide')}}
@@ -81,26 +272,39 @@ state.backupLast=state.backupLast||'';
 const TODAY=()=>{let d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')};
 const cents=x=>Math.round(Number(x||0)*100);
 const mEnd=m=>new Date(Date.UTC(+m.slice(0,4),+m.slice(5,7),0)).toISOString().slice(0,10);
-const allScheduled=(start,end)=>{
- let a=[];
- for(const ch of state.charges){if(!ch.active||!ch.start||!Number.isInteger(Number(ch.interval))||Number(ch.interval)<1)continue;
-  let d=ch.start,i=0;
-  while(d<=end&&i++<3000){if(d>=start&&(!ch.end||d<=ch.end))a.push({key:String(ch.id)+'|'+d,name:ch.name,date:d,amount:Number(ch.amount),account:ch.account,isFixed:ch.budget==='Fixe',isFNZ:ch.name==='FNZ Sparkonto'&&ch.account==='Courant'});let next=advance(d,ch.unit,Number(ch.interval));if(next<=d)break;d=next;}
- }
- return a.sort((x,y)=>x.date.localeCompare(y.date)||x.name.localeCompare(y.name));
-};
+const allScheduled=(start,end)=>v4Recurrences(start,end).map(e=>({key:e.key,name:e.name,date:e.date,amount:e.amountCents/100,account:e.account,isFixed:e.isFixed,isFNZ:e.isFNZ}));
 const automaticTransfers=(until=TODAY())=>{
  let first=state.accounts.reduce((s,a)=>a.date&&a.date<s?a.date:s,'9999-12-31');
  if(first==='9999-12-31'||until<first)return [];
  return allScheduled(first,until).filter(x=>x.isFNZ).map(x=>({id:'auto-'+x.key,date:x.date,from:'Courant',to:'FNZ Sparkonto',amount:x.amount,kind:'auto',label:'FNZ Sparkonto',scheduledKey:x.key}));
 };
 const allTransfers=(until=TODAY())=>[...automaticTransfers(until),...state.transfers.filter(t=>t.date<=until)].sort((a,b)=>a.date.localeCompare(b.date));
-const accountProjected=(a,until=TODAY())=>{
- let val=cents(a.balance),base=a.date||'9999-12-31';
- for(const t of state.transfers.filter(t=>t.date<=until)){if(t.date<=base)continue;if(t.from===a.name)val-=cents(t.amount);if(t.to===a.name)val+=cents(t.amount)}
- return val/100;
-};
-function saveTransfer(){let date=$('trDate').value,from=$('trFrom').value,to=$('trTo').value,amount=Number($('trAmount').value),label=$('trLabel').value.trim();if(!date||!from||!to||from===to||!(amount>0)||!Number.isFinite(amount)){alert('Vérifie la date, les comptes et le montant.');return}state.transfers.push({id:'manual-'+Date.now(),date,from,to,amount:Math.round(amount*100)/100,kind:'manual',label:label||'Virement manuel'});save()}
+const accountProjected=(a,until=TODAY())=>(v4AccountBalances(until)[a.name]??cents(a.balance))/100;
+// La date seule ne suffit pas : une nouvelle opération du même jour doit compter.
+function v4AfterBaseline(op,a){
+ const base=a.date||'9999-12-31';
+ if(op.date>base)return true;
+ if(op.date<base)return false;
+ return Number.isFinite(Number(op.createdAt)) && Number(op.createdAt)>Number(a.baselineUpdatedAt||0);
+}
+function v4AccountBalances(until=TODAY()){
+ const balances={};
+ for(const a of state.accounts){
+  if(!a||!a.name||!Number.isFinite(Number(a.balance)))continue;
+  let value=cents(a.balance),base=a.date||'9999-12-31';
+  for(const e of state.expenses){
+   if(v4AfterBaseline(e,a)&&e.date<=until&&(e.account||'Courant')===a.name)value-=cents(e.amount);
+  }
+  for(const t of state.transfers){
+   if(!v4AfterBaseline(t,a)||t.date>until)continue;
+   if(t.from===a.name)value-=cents(t.amount);
+   if(t.to===a.name)value+=cents(t.amount);
+  }
+  balances[a.name]=value;
+ }
+ return balances;
+}
+function saveTransfer(){let date=$('trDate').value,from=$('trFrom').value,to=$('trTo').value,amount=Number($('trAmount').value),label=$('trLabel').value.trim();if(!date||!from||!to||from===to||!(amount>0)||!Number.isFinite(amount)){alert('Vérifie la date, les comptes et le montant.');return}state.transfers.push({id:'manual-'+Date.now(),date,from,to,amount:Math.round(amount*100)/100,kind:'manual',label:label||'Virement manuel',createdAt:Date.now()});save()}
 function removeTransfer(id){if(!confirm('Supprimer ce virement manuel ?'))return;state.transfers=state.transfers.filter(t=>t.id!==id);save()}
 function renderTransfers(){let names=state.accounts.map(a=>a.name),opt=selected=>names.map(n=>`<option ${n===selected?'selected':''}>${esc(n)}</option>`).join(''),list=allTransfers();$('transfers').innerHTML=`<div class="card"><h2>Virements entre comptes</h2><div class="notice">Les virements FNZ planifiés sont des échéances prévisionnelles, pas des opérations bancaires confirmées. Ils ne sont jamais déduits une deuxième fois de ton reste pour vivre. Si un virement réel est retardé, corrige la charge régulière ou le solde de référence.</div><h3 style="margin-top:16px">Ajouter un virement manuel</h3><div class="grid"><div><label>Date</label><input id="trDate" type="date" value="${TODAY()}"></div><div><label>Montant (€)</label><input id="trAmount" type="number" step="0.01" min="0.01"></div><div><label>Depuis</label><select id="trFrom">${opt('Courant')}</select></div><div><label>Vers</label><select id="trTo">${opt('Épargne')}</select></div></div><label>Motif (facultatif)</label><input id="trLabel" placeholder="Épargne, remboursement…"><div class="actions"><button class="primary" onclick="saveTransfer()">Enregistrer le virement</button></div></div><div class="card"><h3>Historique des virements (${list.length})</h3>${list.length?list.slice().reverse().map(t=>`<div class="listItem"><div class="listTop"><div><b>${esc(t.label||'Virement')}</b><div class="muted">${esc(t.date)} · ${esc(t.from)} → ${esc(t.to)}</div><div class="muted">${t.kind==='auto'?'Prévu (non confirmé par la banque)':'Saisi manuellement'}</div></div><b>${eur(t.amount)}</b></div>${t.kind==='manual'?`<div class="actions"><button class="danger" onclick="removeTransfer('${esc(t.id)}')">Supprimer</button></div>`:''}</div>`).join(''):'<p class="muted">Aucun virement enregistré.</p>'}</div>`}
 function renderCalendar(){let days=Number($('calDays')?.value||30),start=TODAY(),end=new Date(start+'T12:00:00Z');end.setUTCDate(end.getUTCDate()+days);let items=allScheduled(start,end.toISOString().slice(0,10));$('calendarList').innerHTML=`<p class="muted">Échéances à venir, déjà réservées dans le budget du mois correspondant. Aucune deuxième déduction.</p>${items.length?items.map(e=>`<div class="row"><div><b>${esc(e.name)}</b><div class="muted">${esc(e.date)} · ${esc(e.account)}${e.isFNZ?' · virement FNZ':''}</div></div><b>${eur(e.amount)}</b></div>`).join(''):'<p>Aucune échéance dans cette période.</p>'}`}
@@ -117,6 +321,33 @@ renderBackup=function(){previousBackup();let days=state.backupLast?Math.floor((D
 const previousExport=exportData;
 exportData=function(){state.backupLast=new Date().toISOString();localStorage.setItem(KEY,JSON.stringify(state));previousExport();render()};
 function exportCSV(){let rows=[['Type','Date','Nom','Depuis','Vers','Montant EUR']];for(const e of state.expenses)rows.push(['Dépense',e.date,e.name,e.account||'Courant','',e.amount]);for(const t of allTransfers())rows.push(['Virement',t.date,t.label||'Virement',t.from,t.to,t.amount]);let content='\ufeff'+rows.map(r=>r.map(x=>'"'+String(x??'').replace(/"/g,'""')+'"').join(';')).join('\r\n');let a=document.createElement('a'),url=URL.createObjectURL(new Blob([content],{type:'text/csv;charset=utf-8'}));a.href=url;a.download='mes-finances-operations-'+TODAY()+'.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),5000)}
+/* Reconciliation of the user's pre-pay October 2026 reference. Only migrate the
+   known historical 327.03 EUR reference; never silently credit other baselines. */
+function finReconcileOctoberSalary(){
+ const a=state.accounts.find(x=>x.name==='Courant');
+ const amount=Number(state.salaries?.['2026-10']);
+ if(!a||Math.abs(Number(a.balance)-327.03)>0.001||!Number.isFinite(amount)||amount<=0)return;
+ if(state.salaryReceipts['2026-10']||state.octoberSalaryReconciled)return;
+ // The user confirmed that 327.03 EUR was BEFORE the October pay.
+ // Baseline date is used as an effective accounting date, not a claimed bank payment date.
+ const base=a.date||'2026-10-31';
+ state.salaryReceipts['2026-10']={id:'salary-2026-10',date:base,account:'Courant',amount,
+   createdAt:Math.max(Date.now(),Number(a.baselineUpdatedAt||0)+1),dateToVerify:true};
+ state.octoberSalaryReconciled=true;
+ save();
+}
+window.finUpdateOctoberSalaryDate=function(){
+ const r=state.salaryReceipts['2026-10'];if(!r)return;
+ const next=prompt('Date réelle de réception de la paie d’octobre (AAAA-MM-JJ)',r.date);
+ if(next===null)return;
+ if(!/^\d{4}-\d{2}-\d{2}$/.test(next)||Number.isNaN(Date.parse(next)))return alert('Date invalide');
+ r.date=next;r.dateToVerify=false;r.createdAt=Math.max(Date.now(),Number(state.accounts.find(a=>a.name===r.account)?.baselineUpdatedAt||0)+1);save();
+};
+const finAccountsBeforeReconcile=renderAccounts;
+renderAccounts=function(){finAccountsBeforeReconcile();const r=state.salaryReceipts['2026-10'];if(r&&r.dateToVerify){
+ $('accounts').insertAdjacentHTML('afterbegin','<div class="card"><h3>Paie d’octobre intégrée</h3><p>Les '+eur(r.amount)+' de salaire sont désormais inclus dans le solde calculé du Courant, à partir de la référence de 327,03 € avant paie.</p><p class="muted">Date comptable provisoire : '+esc(r.date)+'. Vérifie la date réelle de réception pour fiabiliser l’historique.</p><button onclick="finUpdateOctoberSalaryDate()">Corriger la date de réception</button></div>');
+ }};
+finReconcileOctoberSalary();
 const previousImport=importData;
 importData=async function(input){let f=input.files[0];if(!f)return;try{let obj=JSON.parse(await f.text());if(!Array.isArray(obj.charges)||!Array.isArray(obj.expenses)||!Array.isArray(obj.accounts)||!obj.salaries||!obj.carry||obj.accounts.length<1||obj.charges.some(c=>typeof c.name!=='string'||!Number.isFinite(Number(c.amount)))||obj.expenses.some(e=>!Number.isFinite(Number(e.amount))))throw Error('Structure incorrecte');if(!confirm('Remplacer toutes les données actuelles par cette sauvegarde ?'))return;state=normalizePrime(obj);state.transfers=Array.isArray(state.transfers)?state.transfers:[];state.closures=state.closures&&typeof state.closures==='object'?state.closures:{};save()}catch(e){alert('Sauvegarde invalide : '+e.message)}};
 // Navigation supplémentaire, sans modifier les onglets d'origine.
@@ -140,7 +371,7 @@ function v3Stats(m){const l=expenses(m),b=budget(m),spent=l.filter(e=>(e.account
 function v3Projection(m){const st=v3Stats(m),today=TODAY(),end=mEnd(m),lastDay=Number(end.slice(8)),current=m===today.slice(0,7)?Math.min(lastDay,Number(today.slice(8))):m<today.slice(0,7)?lastDay:0,daysLeft=lastDay-current;
 const valid=st.list.filter(e=>e.date<=today&&e.date>=m+'-01');const spentSoFar=valid.filter(e=>(e.account||'Courant')==='Courant').reduce((sum,e)=>sum+Number(e.amount||0),0);const daily=current>0?spentSoFar/current:0;
 return {...st,daily,daysLeft,estimate:st.rem===null?null:st.rem-daily*daysLeft,eligible:m<=today.slice(0,7)} }
-function v3PredictionHTML(m){const p=v3Projection(m);return `<div class="card"><div class="v3-inline"><h3>Prévision de fin de mois</h3><span class="v3-pill">Méthode simple</span></div>${p.estimate===null?'<p class="muted">Renseigne le salaire du mois précédent pour calculer la prévision.</p>':!p.eligible?'<p class="muted">La projection commencera quand ce mois aura débuté.</p>':`<div class="v3-metric">${eur(p.estimate)}</div><p class="muted">Moyenne observée : ${eur(p.daily)} / jour · ${p.daysLeft} jour(s) restant(s).</p><p class="v3-detail">Projection = reste actuel − moyenne des dépenses déjà enregistrées dans le mois × jours restants. Les charges fixes sont déjà réservées et ne sont pas déduites deux fois.</p>`}<div class="v3-toolbar"><button onclick="v3Simulate()">Simuler un achat</button></div></div>`}
+function v3PredictionHTML(m){const p=v3Projection(m);return `<div class="card"><div class="v3-inline"><h3>Prévision de fin de mois</h3><span class="v3-pill">Méthode simple</span></div>${p.estimate===null?'<p class="muted">Renseigne le salaire du mois précédent pour calculer la prévision.</p>':!p.eligible?'<p class="muted">La projection commencera quand ce mois aura débuté.</p>':`<div class="v3-metric">${eur(p.estimate)}</div><p class="muted">Moyenne observée : ${eur(p.daily)} / jour · ${p.daysLeft} jour(s) restant(s).</p><p class="v3-detail">Projection = reste actuel − moyenne des dépenses déjà enregistrées dans le mois × jours restants. Les charges fixes sont déjà réservées et ne sont pas déduites deux fois.</p>`}</div>`}
 function v3Simulate(){let p=v3Projection(month);if(p.estimate===null)return alert('Renseigne le salaire avant de simuler.');let x=prompt('Montant de la dépense hypothétique (€). Aucun enregistrement ne sera créé.','50');if(x===null)return;let n=Number(x.replace(',','.'));if(!Number.isFinite(n)||n<0)return alert('Montant invalide');alert('Fin de mois estimée avant : '+eur(p.estimate)+'\nAprès cette dépense hypothétique : '+eur(p.estimate-n)+'\nAucune donnée modifiée.')}
 function v3Daily(){const d=$('daily');const p=v3Projection(month);const today=TODAY();const next=allScheduled(today,(()=>{let x=new Date(today+'T12:00:00Z');x.setUTCDate(x.getUTCDate()+31);return x.toISOString().slice(0,10)})())[0];d.insertAdjacentHTML('afterbegin',`<div class="card hero"><div class="v3-kicker">Votre tableau de bord</div><div class="v3-metric">${p.rem===null?'—':eur(p.rem)}</div><div>Reste pour vivre · ${esc(month)}</div><div class="v3-tiles" style="margin-top:16px"><div class="v3-tile" style="background:#ffffff15;border-color:#ffffff35"><small style="color:#edd7e1">Dépenses variables</small><b>${eur(p.spent)}</b></div><div class="v3-tile" style="background:#ffffff15;border-color:#ffffff35"><small style="color:#edd7e1">Prochaine échéance</small><b>${next?eur(next.amount):'—'}</b><div class="v3-detail">${next?esc(next.date):'Aucune'}</div></div></div></div>`);
 d.insertAdjacentHTML('beforeend',v3PredictionHTML(month));
@@ -148,7 +379,7 @@ const add=d.querySelector('#expenseName');if(add){const form=add.closest('.card'
 for(const e of p.list){const items=[...d.querySelectorAll('.listItem')];const node=items.find(n=>n.querySelector(`button[onclick="editExpense(${e.id})"]`));if(node){const title=node.querySelector('.muted');if(title)title.insertAdjacentHTML('beforeend',` · ${esc(v3Category(e))}`)}}
 }
 const v3OriginalAddExpense=addExpense;
-addExpense=function(){const date=$('expenseDate')?.value,name=$('expenseName')?.value.trim(),amount=Number($('expenseAmount')?.value),category=$('v3ExpenseCategory')?.value||'Autres',account=$('expenseAccount')?.value||'Courant';if(!date||!name||!(amount>0))return v3OriginalAddExpense();state.expenses.push({id:Date.now(),month:date.slice(0,7),date,name,amount,category,account});month=date.slice(0,7);save()};
+addExpense=function(){const date=$('expenseDate')?.value,name=$('expenseName')?.value.trim(),amount=Number($('expenseAmount')?.value),category=$('v3ExpenseCategory')?.value||'Autres',account=$('expenseAccount')?.value||'Courant';if(!v32ValidDate(date)||!name||!Number.isFinite(amount)||!(amount>0)||!state.accounts.some(a=>a.name===account))return alert('Vérifie la date, le montant et le compte débité.');state.expenses.push({id:Date.now(),month:date.slice(0,7),date,name,amount,category,account,createdAt:Date.now()});month=date.slice(0,7);save()};
 const v3OriginalEditExpense=editExpense;
 editExpense=function(id){const e=state.expenses.find(x=>String(x.id)===String(id));if(!e)return;
  const name=prompt('Nom de la dépense',e.name);if(name===null)return;
@@ -192,13 +423,13 @@ function v3SetCalendarView(view){
  state.v3.calendarView=view;
  save();
 }
-function v3Settings(){const e=$('backup');e.insertAdjacentHTML('beforeend',`<div class="card"><h3>Apparence</h3><label>Thème de l'application</label><select onchange="state.v3.theme=this.value;v3Theme();save()"><option value="dark" ${state.v3.theme==='dark'?'selected':''}>Midnight Bordeaux (sombre)</option><option value="light" ${state.v3.theme==='light'?'selected':''}>Bordeaux Minimal (clair)</option><option value="auto" ${state.v3.theme==='auto'?'selected':''}>Automatique (Android)</option></select><p class="muted">V3 : le mode de prévision intelligente s’activera dans une prochaine évolution après validation de données historiques suffisantes. Le calcul actuel est simple et transparent.</p></div>`)}
+function v3Settings(){const e=$('backup');e.insertAdjacentHTML('beforeend',`<div class="card"><h3>Apparence</h3><label>Thème de l'application</label><select onchange="state.v3.theme=this.value;v3Theme();save()"><option value="dark" ${state.v3.theme==='dark'?'selected':''}>Midnight Bordeaux (sombre)</option><option value="light" ${state.v3.theme==='light'?'selected':''}>Bordeaux Minimal (clair)</option><option value="auto" ${state.v3.theme==='auto'?'selected':''}>Automatique (Android)</option></select><p class="muted">Le calcul de prévision de fin de mois est indicatif et utilise uniquement les données saisies. Le calcul actuel est simple et transparent.</p></div>`)}
 const v3OldRender=render;
 render=function(){v3Theme();v3OldRender();for(const id of ['categories','goals','reports'])$(id).classList.toggle('hidden',id!==tab);document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));v3Daily();v3RenderCategories();v3RenderGoals();v3RenderReports();v3Settings();if(tab==='calendar')v3CalendarToolbar();$('v3Fab').classList.toggle('hidden',tab!=='daily');};
 for(const [id,label,icon] of [['daily','Accueil','⌂'],['charges','Charges','▤'],['accounts','Comptes','◉'],['transfers','Virements','⇄'],['calendar','Calendrier','▦'],['categories','Catégories','◈'],['goals','Objectifs','◎'],['reports','Bilan','▥'],['backup','Réglages','⚙']]){let b=document.querySelector('nav button[data-tab="'+id+'"]');if(!b){b=document.createElement('button');b.dataset.tab=id;b.textContent=label;nav.appendChild(b);const section=document.createElement('section');section.id=id;section.className='hidden';document.querySelector('main').appendChild(section)}else b.textContent=label;b.dataset.icon=icon;}
 const fab=document.createElement('button');fab.id='v3Fab';fab.className='v3-fab';fab.textContent='+';fab.setAttribute('aria-label','Ajouter une dépense');fab.onclick=()=>{tab='daily';render();$('v3-expense-form')?.scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>$('expenseAmount')?.focus(),300)};document.body.appendChild(fab);
 
-document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{tab=b.dataset.tab;render()});render();
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{tab=b.dataset.tab;render()});/* Initial rendering is performed after V4 functions are defined. */
 if ('serviceWorker' in navigator && location.protocol==='https:') {window.addEventListener('load',()=>Promise.resolve().catch(()=>{}));}
 
 function v32Cents(n){const v=Number(n);return Number.isFinite(v)?Math.round((v+Number.EPSILON)*100):0}
@@ -244,7 +475,7 @@ function v32DailyAllowance(){
 function v32ExtraDashboard(){
  const allowance=v32DailyAllowance(),forecasts=[7,15,30,90].map(v32Projection);
  return `<div class="card"><h2>Budget quotidien indicatif</h2>${allowance?`<strong style="font-size:25px">${eur(allowance.daily/100)} / jour</strong><p class="muted">${allowance.days} jour(s) restants · ${eur(allowance.available/100)} de reste à vivre après dépenses saisies. Les charges fixes sont déjà déduites du budget mensuel.</p>`:'<p>Renseigne d’abord le salaire réellement reçu pour afficher une estimation.</p>'}</div>
- <div class="card"><h2>Scénarios à 7, 15, 30 et 90 jours</h2><p class="notice">Simulation basée sur les soldes de référence saisis, pas sur une connexion bancaire. Les dépenses variables futures et les salaires non reçus ne sont pas anticipés. Les virements FNZ déplacent les fonds sans réduire le patrimoine total. Ne pas confondre avec le reste à vivre.</p>
+ <div class="card"><h2>Scénarios à 7, 15, 30 et 90 jours</h2><p class="notice">Projection indicative basée sur les soldes de référence saisis, pas sur une connexion bancaire. Les dépenses variables futures et les salaires non reçus ne sont pas anticipés. Les virements FNZ déplacent les fonds sans réduire le patrimoine total. Ne pas confondre avec le reste à vivre.</p>
  ${forecasts.map(f=>`<div class="row"><div><b>${f.days} jours — ${esc(f.end)}</b><div class="muted">${f.stale.length?'Soldes non actualisés : '+f.stale.map(esc).join(', '):'Soldes datés d’aujourd’hui'}${f.ignored?' · '+f.ignored+' échéance(s) non classée(s)':''}</div></div><b>${eur(f.totalCents/100)}</b></div><details><summary>Soldes simulés par compte</summary>${Object.entries(f.balances).map(([name,value])=>`<div class="row"><span>${esc(name)}</span><b>${eur(value/100)}</b></div>`).join('')}</details>`).join('')}</div>`;
 }
 function renderV32Analysis(){
@@ -256,9 +487,9 @@ function renderV32Analysis(){
  const query=String(window.v32Query||'').toLowerCase(),filter=String(window.v32Category||''),accountFilter=String(window.v32Account||'');
  const visible=subset.filter(x=>(!accountFilter||(x.account||'Courant')===accountFilter)&&(!filter||String(x.category||'Sans catégorie')===filter)&&(!query||String(x.name||'').toLowerCase().includes(query)||String(x.category||'Sans catégorie').toLowerCase().includes(query)));
  const cats=[...new Set(subset.map(x=>String(x.category||'Sans catégorie')))].sort();
- host.innerHTML=`<div class="card"><h2>Statistiques — ${esc(m)}</h2><p class="muted">Calculées uniquement à partir des dépenses enregistrées dans cette application. Les virements internes ne sont pas inclus.</p><div class="hero card"><span>Dépenses variables du mois</span><strong>${eur(spent/100)}</strong></div>${Object.entries(by).sort((a,b)=>b[1]-a[1]).map(([cat,value])=>`<div style="margin:14px 0"><div class="row"><b>${esc(cat)}</b><span>${eur(value/100)}</span></div><div style="height:13px;border-radius:8px;background:var(--panel2);overflow:hidden"><div style="height:100%;width:${Math.max(0,100*value/max)}%;background:var(--accent)"></div></div></div>`).join('')||'<p>Aucune dépense ce mois.</p>'}</div><div class="card"><h2>Recherche et filtres</h2><label for="v32-search">Rechercher</label><input id="v32-search" placeholder="Nom ou catégorie" value="${esc(window.v32Query||'')}"><label for="v32-account">Compte</label><select id="v32-account"><option value="">Tous les comptes</option>${state.accounts.map(a=>`<option value="${esc(a.name)}" ${a.name===accountFilter?'selected':''}>${esc(a.name)}</option>`).join('')}</select><label for="v32-cat">Catégorie</label><select id="v32-cat"><option value="">Toutes les catégories</option>${cats.map(c=>`<option value="${esc(c)}" ${c===filter?'selected':''}>${esc(c)}</option>`).join('')}</select><p class="muted">${visible.length} opération(s)</p>${visible.map(x=>`<div class="row"><span>${esc(x.date||'')} · ${esc(x.name||'')}<br><small>${esc(x.category||'Sans catégorie')} · ${esc(x.account||'Courant')}</small></span><b>${eur(x.amount)}</b></div>`).join('')||'<p>Aucun résultat.</p>'}<div class="actions"><button id="v32-csv">Exporter les dépenses visibles en CSV</button></div></div>${v32ExtraDashboard()}<div class="card"><h2>Confidentialité</h2><p class="muted">Cette bêta utilise un stockage distinct de la V3.1. Ne pas importer de sauvegarde réelle avant validation complète.</p></div>`;
+ host.innerHTML=`<div class="card"><h2>Statistiques — ${esc(m)}</h2><p class="muted">Calculées uniquement à partir des dépenses enregistrées dans cette application. Les virements internes ne sont pas inclus.</p><div class="hero card"><span>Dépenses variables du mois</span><strong>${eur(spent/100)}</strong></div>${Object.entries(by).sort((a,b)=>b[1]-a[1]).map(([cat,value])=>`<div style="margin:14px 0"><div class="row"><b>${esc(cat)}</b><span>${eur(value/100)}</span></div><div style="height:13px;border-radius:8px;background:var(--panel2);overflow:hidden"><div style="height:100%;width:${Math.max(0,100*value/max)}%;background:var(--accent)"></div></div></div>`).join('')||'<p>Aucune dépense ce mois.</p>'}</div><div class="card"><h2>Recherche et filtres</h2><label for="v32-search">Rechercher</label><input id="v32-search" placeholder="Nom ou catégorie" value="${esc(window.v32Query||'')}"><label for="v32-account">Compte</label><select id="v32-account"><option value="">Tous les comptes</option>${state.accounts.map(a=>`<option value="${esc(a.name)}" ${a.name===accountFilter?'selected':''}>${esc(a.name)}</option>`).join('')}</select><label for="v32-cat">Catégorie</label><select id="v32-cat"><option value="">Toutes les catégories</option>${cats.map(c=>`<option value="${esc(c)}" ${c===filter?'selected':''}>${esc(c)}</option>`).join('')}</select><p class="muted">${visible.length} opération(s)</p>${visible.map(x=>`<div class="row"><span>${esc(x.date||'')} · ${esc(x.name||'')}<br><small>${esc(x.category||'Sans catégorie')} · ${esc(x.account||'Courant')}</small></span><b>${eur(x.amount)}</b></div>`).join('')||'<p>Aucun résultat.</p>'}<div class="actions"><button id="v32-csv">Exporter les dépenses visibles en CSV</button></div></div>${v32ExtraDashboard()}<div class="card"><h2>Confidentialité</h2><p class="muted">Les données sont conservées localement dans cette application. Effectue régulièrement une sauvegarde JSON.</p></div>`;
  const q=$('v32-search'),c=$('v32-cat');$('v32-account').onchange=()=>{window.v32Account=$('v32-account').value;renderV32Analysis()};q.oninput=()=>{window.v32Query=q.value;const pos=q.selectionStart;renderV32Analysis();const next=$('v32-search');next.focus();next.setSelectionRange(pos,pos)};c.onchange=()=>{window.v32Category=c.value;renderV32Analysis()};
- $('v32-csv').onclick=()=>{const content='Date;Nom;Catégorie;Compte;Montant (€)\r\n'+visible.map(x=>[x.date,x.name,x.category||'Sans catégorie',x.account||'Courant',(v32Cents(x.amount)/100).toFixed(2).replace('.',',')].map(v32CsvCell).join(';')).join('\r\n');const url=URL.createObjectURL(new Blob(['\ufeff'+content],{type:'text/csv;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='mes-finances-v32-test-'+m+'.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1500)};
+ $('v32-csv').onclick=()=>{const content='Date;Nom;Catégorie;Compte;Montant (€)\r\n'+visible.map(x=>[x.date,x.name,x.category||'Sans catégorie',x.account||'Courant',(v32Cents(x.amount)/100).toFixed(2).replace('.',',')].map(v32CsvCell).join(';')).join('\r\n');const url=URL.createObjectURL(new Blob(['\ufeff'+content],{type:'text/csv;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='mes-finances-depenses-'+m+'.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1500)};
 }
 
 // V4.0: outils intégrés — aucune transmission réseau des données financières.
@@ -267,7 +498,7 @@ state.v4.confirmed=state.v4.confirmed&&typeof state.v4.confirmed==='object'?stat
 state.v4.privateMode=Boolean(state.v4.privateMode);
 state.v4.reserveCents=Number.isSafeInteger(state.v4.reserveCents)?state.v4.reserveCents:0;
 const v4Date=(d)=>typeof d==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(d)&&!Number.isNaN(Date.parse(d+'T12:00:00Z'))&&new Date(d+'T12:00:00Z').toISOString().slice(0,10)===d;
-const v4MonthEnd=m=>new Date(Date.UTC(Number(m.slice(0,4)),Number(m.slice(5,7)),0)).toISOString().slice(0,10);
+function v4MonthEnd(m){return new Date(Date.UTC(Number(m.slice(0,4)),Number(m.slice(5,7)),0)).toISOString().slice(0,10)}
 const v4Money=x=>Math.round(Number(x)*100);
 const v4DateShift=(d,n)=>{const x=new Date(d+'T12:00:00Z');x.setUTCDate(x.getUTCDate()+n);return x.toISOString().slice(0,10)};
 function v4Recurrences(start,end){
@@ -331,7 +562,7 @@ render=function(){v4PreviousRender();for(const id of ['v4forecast','v4due','v4pr
 render();
 </script>
 <script>
-// Sécurité supplémentaire de la bêta : validation avant restauration, sans toucher à la V3.1.
+// Validation complète avant restauration des données locales.
 const v32LegacyImport=importData;
 function v32ValidDate(d){return typeof d==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(d)&&!Number.isNaN(Date.parse(d+'T12:00:00Z'))&&new Date(d+'T12:00:00Z').toISOString().slice(0,10)===d}
 function v32ValidateBackup(o){
@@ -345,6 +576,13 @@ function v32ValidateBackup(o){
  if(o.expenses.some(x=>!x||!amount(x.amount)||!v32ValidDate(x.date)))throw Error('Dépenses invalides');
  if(o.charges.some(x=>!v32ValidDate(x.start)||x.end&&!v32ValidDate(x.end)))throw Error('Dates de charges invalides');
  if(o.transfers!==undefined&&(!Array.isArray(o.transfers)||o.transfers.some(x=>!x||!amount(x.amount)||typeof x.from!=='string'||typeof x.to!=='string'||x.from===x.to)))throw Error('Virements invalides');
+ const names=new Set(o.accounts.map(a=>a.name));
+ if(!names.has('Courant'))throw Error('Compte Courant absent');
+ if(o.expenses.some(x=>x.account!==undefined&&!names.has(x.account)))throw Error('Dépense liée à un compte inconnu');
+ if(o.charges.some(x=>!names.has(x.account)||!['Jours','Semaines','Mois'].includes(x.unit)||x.end&&x.end<x.start))throw Error('Charge liée à un compte inconnu, unité ou période incorrecte');
+ if(o.transfers?.some(x=>!names.has(x.from)||!names.has(x.to)||!v32ValidDate(x.date)))throw Error('Virement avec compte ou date invalide');
+ if(Object.values(o.salaries).some(x=>!amount(x))||Object.values(o.carry).some(x=>!amount(x)))throw Error('Salaire ou report invalide');
+ if(o.expenses.some(x=>x.month!==x.date.slice(0,7)))throw Error('Mois de dépense incohérent');
  return true;
 }
 importData=async function(input){
@@ -389,4 +627,176 @@ importData=async function(input){
  window.addEventListener('resize',reveal);
  setTimeout(reveal,100);
 })();
-</script></body></html>
+</script><script>
+// Comptes : soldes calculés, sans altérer les références importées.
+const v4PriorRenderAccounts=renderAccounts;
+renderAccounts=function(){
+ v4PriorRenderAccounts();
+ const balances=v4AccountBalances();
+ const total=Object.values(balances).reduce((sum,v)=>sum+v,0);
+ const box=document.getElementById('accounts');
+ if(!box)return;
+ const card=document.createElement('div');card.className='card';
+ card.innerHTML='<h2>Soldes calculés au '+esc(TODAY())+'</h2><p class="muted">Soldes de référence + virements manuels − dépenses enregistrées après la date de chaque solde de référence. Les nouvelles opérations du jour sont prises en compte ; les opérations déjà incluses dans la référence ne sont pas redéduites. Les virements FNZ seulement programmés ne sont pas comptabilisés.</p>'+
+ state.accounts.map(a=>'<div class="row"><span>'+esc(a.name)+'</span><b>'+eur((balances[a.name]??cents(a.balance))/100)+'</b></div>').join('')+
+ '<div class="row"><b>Patrimoine calculé</b><b>'+eur(total/100)+'</b></div>'+
+ '<p class="muted">Lorsque tu actualises manuellement un solde de référence, indique aussi sa date. Les opérations antérieures sont déjà incluses ; les nouvelles opérations enregistrées le même jour sont comptées après la mise à jour de la référence.</p>';
+ box.insertBefore(card,box.firstChild);
+};
+// Les projections démarrent des soldes calculés aujourd'hui et non des références anciennes.
+const v4PreviousForecast=v4Forecast;
+v4Forecast=function(days){
+ const result=v4PreviousForecast(days),actual=v4AccountBalances();
+ for(const a of state.accounts){
+  if(!Object.hasOwn(result.balances,a.name)||!Object.hasOwn(actual,a.name))continue;
+  // Le moteur existant intègre déjà les virements manuels depuis la référence.
+  // Ajouter uniquement les dépenses réelles postérieures à cette référence.
+  let spent=0;
+  for(const e of state.expenses)if(v4AfterBaseline(e,a)&&e.date<=TODAY()&&(e.account||'Courant')===a.name)spent+=cents(e.amount);
+  result.balances[a.name]-=spent;
+ }
+ result.total=Object.values(result.balances).reduce((a,b)=>a+b,0);
+ return result;
+};
+</script>
+
+<script>
+/* Navigation 4 onglets + Plus. Ne modifie aucune donnée financière. */
+(function(){
+ const nav=document.querySelector('nav');if(!nav||document.getElementById('finMoreButton'))return;
+ const more=document.createElement('button');more.id='finMoreButton';more.type='button';more.textContent='Plus';more.setAttribute('aria-label','Ouvrir les autres rubriques');more.setAttribute('aria-expanded','false');
+ const backdrop=document.createElement('div');backdrop.id='finMoreBackdrop';backdrop.hidden=true;
+ const panel=document.createElement('div');panel.id='finMorePanel';panel.hidden=true;panel.setAttribute('role','dialog');panel.setAttribute('aria-label','Autres rubriques');
+ panel.innerHTML='<h2>Autres rubriques</h2><div class="fin-menu-grid"></div>';
+ const grid=panel.querySelector('.fin-menu-grid');
+ const core=new Set(['daily','charges','accounts']);
+ function close(){panel.hidden=true;backdrop.hidden=true;more.setAttribute('aria-expanded','false')}
+ function sync(){more.classList.toggle('active',!core.has(tab));for(const b of grid.querySelectorAll('button'))b.classList.toggle('active',b.dataset.target===tab)}
+ for(const b of nav.querySelectorAll('button[data-tab]')){
+  if(core.has(b.dataset.tab)||b.dataset.tab==='goals')continue;
+  const item=document.createElement('button');item.type='button';item.dataset.target=b.dataset.tab;item.textContent=b.textContent;
+  item.onclick=()=>{tab=b.dataset.tab;close();render();window.scrollTo(0,0)};grid.appendChild(item)
+ }
+ more.onclick=()=>{const open=panel.hidden;panel.hidden=!open;backdrop.hidden=!open;more.setAttribute('aria-expanded',String(open));sync()};
+ backdrop.onclick=close;document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+ nav.appendChild(more);document.body.append(backdrop,panel);
+ const prior=render;render=function(){prior();sync()};sync();
+})();
+</script>
+<script>
+/* Calendar month grid and data-driven SVG charts, no external dependencies. */
+(function(){
+let calMonth=(typeof month==='string'?month:TODAY().slice(0,7));let selected=TODAY();
+const colors=['#bd426d','#e5a269','#7d82d3','#52b9a6','#bd8dc5','#d56f80','#8da5bd','#b7aa78'];
+function euro(v){return eur(Math.round((Number(v)||0)*100)/100)}
+function calEvents(m){
+ const last=new Date(m+'-01T12:00:00Z');last.setUTCMonth(last.getUTCMonth()+1);last.setUTCDate(0);
+ const end=last.toISOString().slice(0,10),start=m+'-01';let list=[];
+ try{list=allScheduled(start,end).map(x=>({date:x.date,name:x.name,amount:-Number(x.amount||0),kind:'charge',account:x.account||'Courant'}))}catch(e){console.warn('Calendar scheduled items',e)}
+ for(const x of state.expenses||[])if(x.date>=start&&x.date<=end)list.push({date:x.date,name:x.name,amount:-Number(x.amount||0),kind:'expense',account:x.account||'Courant'});
+ for(const x of state.transfers||[])if(x.date>=start&&x.date<=end)list.push({date:x.date,name:x.label||'Virement',amount:Number(x.amount||0),kind:'transfer',account:(x.from||'')+' → '+(x.to||'')});
+ return list.sort((a,b)=>a.date.localeCompare(b.date));
+}
+function drawCalendar(){const section=document.getElementById('calendar');if(!section)return;
+ const d=new Date(calMonth+'-01T12:00:00Z');if(!Number.isFinite(d.getTime()))return;
+ const year=d.getUTCFullYear(),mo=d.getUTCMonth(),first=(d.getUTCDay()+6)%7,days=new Date(Date.UTC(year,mo+1,0)).getUTCDate(),events=calEvents(calMonth),map={};
+ for(const e of events)(map[e.date]??=[]).push(e);
+ if(!selected.startsWith(calMonth))selected=calMonth+'-01';
+ const label=d.toLocaleDateString('fr-FR',{month:'long',year:'numeric',timeZone:'UTC'});
+ let cells=['L','M','M','J','V','S','D'].map(x=>'<div class="fin-weekday">'+x+'</div>').join('');
+ for(let i=0;i<first;i++)cells+='<div class="fin-day fin-out" aria-hidden="true"></div>';
+ for(let day=1;day<=days;day++){
+  const date=calMonth+'-'+String(day).padStart(2,'0'),items=map[date]||[];
+  cells+='<button type="button" class="fin-day '+(date===TODAY()?'fin-today ':'')+(date===selected?'fin-selected':'')+'" data-fin-date="'+date+'" aria-label="'+day+' '+label+', '+items.length+' opérations"><span>'+day+'</span><span class="fin-dots">'+items.slice(0,3).map(e=>'<i class="fin-dot '+(e.kind==='expense'?'expense':e.kind==='transfer'?'income':'')+'"></i>').join('')+'</span></button>';
+ }
+ const chosen=map[selected]||[];
+ section.innerHTML='<div class="card"><div class="fin-cal-head"><button type="button" id="finCalPrev" aria-label="Mois précédent">‹</button><h2 style="text-transform:capitalize;text-align:center;margin:0">'+esc(label)+'</h2><button type="button" id="finCalNext" aria-label="Mois suivant">›</button></div><div class="fin-calendar">'+cells+'</div><div class="fin-legend"><span><i style="background:#e56b88"></i>Échéance</span><span><i style="background:#e9ae65"></i>Dépense</span><span><i style="background:#4bc89a"></i>Virement</span></div></div><div class="card fin-events"><h3>Opérations du '+esc(new Date(selected+'T12:00:00Z').toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}))+'</h3>'+(chosen.length?chosen.map(e=>'<div class="fin-event"><div><b>'+esc(e.name)+'</b><small>'+esc(e.account)+' · '+(e.kind==='charge'?'Échéance prévue':e.kind==='expense'?'Dépense enregistrée':'Virement enregistré')+'</small></div><b>'+euro(e.amount)+'</b></div>').join(''):'<p class="muted">Aucune opération pour cette date.</p>')+'</div>';
+ section.querySelectorAll('[data-fin-date]').forEach(b=>b.onclick=()=>{selected=b.dataset.finDate;drawCalendar()});
+ section.querySelector('#finCalPrev').onclick=()=>{calMonth=shiftMonth(calMonth,-1);drawCalendar()};
+ section.querySelector('#finCalNext').onclick=()=>{calMonth=shiftMonth(calMonth,1);drawCalendar()};
+}
+function graphs(){const report=document.getElementById('reports');if(!report)return;
+ const current=month;const amounts={};const six=[];
+ for(const e of state.expenses||[])if(e.month===current){const k=e.category||'Autres';amounts[k]=(amounts[k]||0)+Number(e.amount||0)}
+ for(let i=5;i>=0;i--){const m=shiftMonth(current,-i);const total=(state.expenses||[]).filter(e=>e.month===m).reduce((n,e)=>n+Number(e.amount||0),0);six.push({m,value:total})}
+ const parts=Object.entries(amounts).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]);const total=parts.reduce((n,x)=>n+x[1],0);
+ let acc=0;const arcs=parts.map(([name,val],i)=>{const start=acc/total*100;acc+=val;return colors[i%colors.length]+' '+start+'% '+acc/total*100+'%'});
+ const max=Math.max(1,...six.map(x=>x.value));
+ const bars=six.map((x,i)=>{const h=Math.max(x.value?3:0,120*x.value/max),px=24+i*49;return '<rect x="'+px+'" y="'+(140-h)+'" width="28" height="'+h+'" rx="5" fill="'+(i===5?'#cc4c79':'#865069')+'"/><text x="'+(px+14)+'" y="157" text-anchor="middle" font-size="10" fill="currentColor">'+esc(x.m.slice(5))+'</text>'}).join('');
+ const pie=total?'<div style="width:160px;height:160px;margin:0 auto;border-radius:50%;background:conic-gradient('+arcs.join(',')+');display:grid;place-items:center"><div style="width:98px;height:98px;border-radius:50%;background:var(--panel2,#242331);display:grid;place-items:center;font-weight:800">'+euro(total)+'</div></div>':'<p class="muted">Aucune dépense ce mois.</p>';
+ const node=document.createElement('div');node.className='card fin-graph-card';node.innerHTML='<h2>Vue graphique · '+esc(current)+'</h2><div class="fin-chart-grid"><div class="fin-chart-panel"><h3>Évolution des dépenses · 6 mois</h3><svg class="fin-chart-svg" viewBox="0 0 330 170" role="img" aria-label="Histogramme des dépenses sur six mois"><line x1="10" y1="140" x2="325" y2="140" stroke="currentColor" opacity=".25"/>'+bars+'</svg></div><div class="fin-chart-panel"><h3>Répartition par catégorie</h3>'+pie+'<div class="fin-legend">'+parts.slice(0,8).map(([name],i)=>'<span><i style="background:'+colors[i%colors.length]+'"></i>'+esc(name)+'</span>').join('')+'</div></div></div>';
+ report.insertBefore(node,report.firstChild);
+}
+const prevRender=render;
+render=function(){prevRender();if(tab==='calendar')drawCalendar();if(tab==='reports'){document.querySelectorAll('#reports .fin-graph-card').forEach(x=>x.remove());graphs()}};
+})();
+</script>
+<style>
+.fin-dynamic-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:12px;margin:12px 0}.fin-dynamic-tile{border:1px solid var(--border,#554052);background:var(--panel2,#252431);border-radius:17px;padding:16px}.fin-dynamic-tile small{display:block;opacity:.72;margin-bottom:8px}.fin-dynamic-tile strong{font-size:clamp(19px,4vw,27px)}.fin-dynamic-tile .positive{color:#56d3ad}.fin-dynamic-tile .negative{color:#ff859a}.fin-dynamic-row{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:11px 0;border-bottom:1px solid #8883}.fin-dynamic-row button{white-space:nowrap}.fin-category-donut{width:190px;height:190px;border-radius:50%;margin:16px auto;display:grid;place-items:center}.fin-category-donut>div{width:118px;height:118px;border-radius:50%;background:var(--panel,#211d2b);display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:800}.fin-cat-legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:9px}.fin-cat-legend>div{display:flex;justify-content:space-between;align-items:center;gap:10px;background:#8c7b9415;border-radius:10px;padding:10px}.fin-cat-legend i{width:11px;height:11px;display:inline-block;border-radius:50%;margin-right:7px}.fin-dynamic-help{font-size:12px;opacity:.75;line-height:1.5}
+</style>
+<script>
+/* Finance dynamic ledger: real balances and budget are separate; no bank connection. */
+(function(){
+const initialize=()=>{state.incomes=Array.isArray(state.incomes)?state.incomes:[];state.salaryReceipts=state.salaryReceipts&&typeof state.salaryReceipts==='object'?state.salaryReceipts:{};state.paidCharges=state.paidCharges&&typeof state.paidCharges==='object'?state.paidCharges:{};state.closures=state.closures&&typeof state.closures==='object'?state.closures:{};};
+initialize();
+const money=n=>Math.round((Number(n)||0)*100)/100;
+const dateToday=()=>new Date().toLocaleDateString('en-CA');
+const originalBudget=budget;
+budget=function(m){const b=originalBudget(m);const extra=state.incomes.filter(x=>x.date?.slice(0,7)===m&&x.account==='Courant'&&x.budget!==false).reduce((n,x)=>n+Number(x.amount||0),0);return b===null?null:money(b+extra)};
+const originalSalary=setSalary;
+setSalary=function(m,v){const old=state.salaries[m];const next=v===''?null:Number(v);if(v!==''&&(!Number.isFinite(next)||next<0))return alert('Montant de salaire invalide');if(old!==undefined&&old!==''&&Number(old)===next)return;const prior=state.salaryReceipts[m];if(v===''){delete state.salaryReceipts[m]}else{const date=prompt('Date réelle de réception du salaire (AAAA-MM-JJ). Laisser vide pour ne modifier que le budget.',dateToday());if(date===null)return;if(date&&(!/^\d{4}-\d{2}-\d{2}$/.test(date)||Number.isNaN(Date.parse(date))))return alert('Date invalide');if(date){const acct=prompt('Compte crédité (Courant, Épargne ou FNZ Sparkonto)',prior?.account||'Courant');if(acct===null)return;if(!state.accounts.some(a=>a.name===acct))return alert('Compte inconnu');state.salaryReceipts[m]={date,account:acct,amount:next,createdAt:Date.now(),id:'salary-'+m}}else delete state.salaryReceipts[m];}originalSalary(m,v)};
+function afterBaseline(op,a){const base=a.date||'9999-12-31';if(op.date>base)return true;if(op.date<base)return false;return Number(op.createdAt||0)>Number(a.baselineUpdatedAt||0)&&Number(op.createdAt||0)>0;}
+function confirmedChargeEvents(){const keys=Object.keys(state.paidCharges).filter(k=>state.paidCharges[k]===true);if(!keys.length)return[];const dates=keys.map(k=>k.split('|').pop()).filter(x=>/^\d{4}-\d{2}-\d{2}$/.test(x)).sort();if(!dates.length)return[];return v4Recurrences(dates[0],dates[dates.length-1]).filter(x=>state.paidCharges[x.key]===true||state.v4?.confirmed?.[x.key]===true)}
+const oldBalance=v4AccountBalances;
+v4AccountBalances=function(until=TODAY()){
+ const b=oldBalance(until);for(const a of state.accounts){let c=b[a.name]??Math.round(Number(a.balance)*100);for(const x of state.incomes){if(x.account===a.name&&x.date<=until&&afterBaseline(x,a))c+=Math.round(Number(x.amount)*100)}for(const x of Object.values(state.salaryReceipts)){if(x.account===a.name&&x.date<=until&&afterBaseline(x,a))c+=Math.round(Number(x.amount)*100)}for(const x of confirmedChargeEvents()){if(x.date>until)continue;const meta=state.paidChargeMeta?.[x.key];const op={date:meta?.paidDate||x.date,createdAt:meta?.createdAt||0};if(op.date>until||!afterBaseline(op,a))continue;if(x.isFNZ){if(a.name==='Courant')c-=x.amountCents;if(a.name==='FNZ Sparkonto')c+=x.amountCents;}else if(x.account===a.name)c-=x.amountCents;}b[a.name]=c;}return b;
+};
+function saveIncome(){const date=$('finIncomeDate').value,amount=Number($('finIncomeAmount').value),account=$('finIncomeAccount').value,name=$('finIncomeName').value.trim(),budgetFlag=$('finIncomeBudget')?.checked!==false;if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||!Number.isFinite(amount)||amount<=0||!name||!state.accounts.some(a=>a.name===account))return alert('Renseigne la date, le compte, le nom et un montant positif.');state.incomes.push({id:'income-'+Date.now(),date,amount:money(amount),account,name,budget:account==='Courant'&&budgetFlag,createdAt:Date.now()});save()}
+window.finSaveIncome=saveIncome;
+window.finDeleteIncome=id=>{if(!confirm('Supprimer cette rentrée ?'))return;state.incomes=state.incomes.filter(x=>x.id!==id);save()};
+window.finConfirmCharge=(key)=>{const paid=!!state.paidCharges[key];if(paid){if(!confirm('Annuler la confirmation de paiement ?'))return;delete state.paidCharges[key];delete state.paidChargeMeta?.[key];}else{if(!confirm('Confirmer le paiement de cette échéance ? Le solde du compte sera ajusté.'))return;state.paidCharges[key]=true;state.paidChargeMeta=state.paidChargeMeta||{};state.paidChargeMeta[key]={createdAt:Date.now(),paidDate:dateToday()};}save()};
+const previousDaily=renderDaily;
+renderDaily=function(){previousDaily();const options=state.accounts.map(a=>'<option value="'+esc(a.name)+'">'+esc(a.name)+'</option>').join('');const list=state.incomes.filter(x=>x.date.slice(0,7)===month);const incomeTotal=list.filter(x=>x.account==='Courant'&&x.budget!==false).reduce((s,x)=>s+Number(x.amount),0);
+ $('daily').insertAdjacentHTML('beforeend','<div class="card"><h2>Rentrées exceptionnelles</h2><p class="fin-dynamic-help">Les rentrées sur Courant augmentent le reste à vivre. Elles augmentent aussi le solde calculé du compte, sans double comptabilisation.</p><div class="grid"><div><label>Date de réception</label><input id="finIncomeDate" type="date" value="'+dateToday()+'"></div><div><label>Montant (€)</label><input id="finIncomeAmount" type="number" min="0.01" step="0.01"></div><div><label>Compte crédité</label><select id="finIncomeAccount">'+options+'</select></div><div><label>Libellé</label><input id="finIncomeName" placeholder="Remboursement, cadeau, prime…"></div></div><label><input id="finIncomeBudget" type="checkbox" checked> Ajouter au reste à vivre si compte Courant</label><div class="actions"><button class="primary" onclick="finSaveIncome()">+ Enregistrer la rentrée</button></div><h3>Rentrées du mois · '+eur(incomeTotal)+' dans le budget</h3>'+(list.length?list.map(x=>'<div class="fin-dynamic-row"><div><b>'+esc(x.name)+'</b><div class="muted">'+esc(x.date)+' · '+esc(x.account)+'</div></div><div><b class="positive">+'+eur(x.amount)+'</b><button class="danger" onclick="finDeleteIncome(\''+esc(x.id)+'\')">Supprimer</button></div></div>').join(''):'<p class="muted">Aucune rentrée exceptionnelle.</p>')+'</div>');
+ const c=$('daily').querySelector('.card:has(button[onclick="closeMonth()"]),.card:has(button[onclick="reopenMonth()"])');if(c){const rem=v3Stats(month).rem;const closed=state.closures[month];c.insertAdjacentHTML('beforeend','<p class="fin-dynamic-help">À la clôture, la part non reportée reste sur le compte bancaire et sort seulement du budget. Aucun virement bancaire fictif n’est créé.</p>'+(closed?'<div class="fin-dynamic-grid"><div class="fin-dynamic-tile"><small>Report au budget suivant</small><strong>'+eur(closed.carry||0)+'</strong></div><div class="fin-dynamic-tile"><small>Conservé hors budget</small><strong>'+eur(Math.max(0,(closed.remainingAtClose||0)-(closed.carry||0)))+'</strong></div></div>':''));}
+};
+const prevAccounts=renderAccounts;
+renderAccounts=function(){prevAccounts();const values=v4AccountBalances(TODAY()),total=Object.values(values).reduce((s,x)=>s+x,0)/100;const node=$('accounts');node.insertAdjacentHTML('afterbegin','<div class="card"><h2>Soldes calculés</h2><p class="fin-dynamic-help">Soldes de référence + mouvements enregistrés après la référence. Les opérations prévues ne sont pas débitées avant confirmation. Tu peux toujours actualiser manuellement chaque solde de référence.</p><div class="fin-dynamic-grid">'+state.accounts.map(a=>'<div class="fin-dynamic-tile"><small>'+esc(a.name)+'</small><strong>'+eur((values[a.name]??0)/100)+'</strong></div>').join('')+'</div><div class="fin-dynamic-row"><b>Patrimoine calculé</b><strong>'+eur(total)+'</strong></div></div>');
+};
+const prevCharges=renderCharges;
+renderCharges=function(){prevCharges();const from=month+'-01',to=v4MonthEnd(month),events=v4Recurrences(from,to).filter(x=>x.isFixed);$('charges').insertAdjacentHTML('afterbegin','<div class="card"><h2>Échéances · '+esc(month)+'</h2><p class="fin-dynamic-help">Une échéance prévue est réservée dans le budget mais ne diminue le solde bancaire qu’après confirmation. Pour FNZ, la confirmation transfère l’argent du Courant vers FNZ.</p>'+(events.length?events.map(x=>'<div class="fin-dynamic-row"><div><b>'+esc(x.name)+'</b><div class="muted">'+esc(x.date)+' · '+esc(x.account)+' · '+eur(x.amountCents/100)+'</div></div><button '+(state.paidCharges[x.key]?'class="primary"':'')+' onclick="finConfirmCharge(\''+esc(x.key)+'\')">'+(state.paidCharges[x.key]?'Payée ✓':'Confirmer')+'</button></div>').join(''):'<p class="muted">Aucune échéance.</p>')+'</div>');
+};
+const prevCategories=v3RenderCategories;
+v3RenderCategories=function(){prevCategories();const sums={};for(const e of expenses(month)){const name=v3Category(e);sums[name]=(sums[name]||0)+Number(e.amount||0)}const parts=Object.entries(sums).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]),total=parts.reduce((s,x)=>s+x[1],0);const colors=['#bf4977','#e4a66b','#8e87d4','#4db5a7','#d783ad','#7c9bbb','#e07a88','#a6a17d'];let cumulative=0;const stops=parts.map(([name,value],i)=>{const a=cumulative/total*100;cumulative+=value;return colors[i%colors.length]+' '+a+'% '+(cumulative/total*100)+'%'});$('categories').insertAdjacentHTML('afterbegin','<div class="card"><h2>Répartition des dépenses · '+esc(month)+'</h2><p class="fin-dynamic-help">Répartition réelle des dépenses par catégorie. Les virements internes et les charges réservées ne sont pas comptés comme dépenses variables.</p>'+(total?'<div class="fin-category-donut" role="img" aria-label="Diagramme circulaire des dépenses par catégorie" style="background:conic-gradient('+stops.join(',')+')"><div>'+eur(total)+'</div></div><div class="fin-cat-legend">'+parts.map(([name,value],i)=>'<div><span><i style="background:'+colors[i%colors.length]+'"></i>'+esc(name)+'</span><b>'+eur(value)+' <small>('+(value/total*100).toFixed(1)+' %)</small></b></div>').join('')+'</div>':'<p class="muted">Aucune dépense enregistrée pour ce mois.</p>')+'</div>')};
+/* Reconciliation of the user's pre-pay October 2026 reference. Only migrate the
+   known historical 327.03 EUR reference; never silently credit other baselines. */
+function finReconcileOctoberSalary(){
+ const a=state.accounts.find(x=>x.name==='Courant');
+ const amount=Number(state.salaries?.['2026-10']);
+ if(!a||Math.abs(Number(a.balance)-327.03)>0.001||!Number.isFinite(amount)||amount<=0)return;
+ if(state.salaryReceipts['2026-10']||state.octoberSalaryReconciled)return;
+ // The user confirmed that 327.03 EUR was BEFORE the October pay.
+ // Baseline date is used as an effective accounting date, not a claimed bank payment date.
+ const base=a.date||'2026-10-31';
+ state.salaryReceipts['2026-10']={id:'salary-2026-10',date:base,account:'Courant',amount,
+   createdAt:Math.max(Date.now(),Number(a.baselineUpdatedAt||0)+1),dateToVerify:true};
+ state.octoberSalaryReconciled=true;
+ save();
+}
+window.finUpdateOctoberSalaryDate=function(){
+ const r=state.salaryReceipts['2026-10'];if(!r)return;
+ const next=prompt('Date réelle de réception de la paie d’octobre (AAAA-MM-JJ)',r.date);
+ if(next===null)return;
+ if(!/^\d{4}-\d{2}-\d{2}$/.test(next)||Number.isNaN(Date.parse(next)))return alert('Date invalide');
+ r.date=next;r.dateToVerify=false;r.createdAt=Math.max(Date.now(),Number(state.accounts.find(a=>a.name===r.account)?.baselineUpdatedAt||0)+1);save();
+};
+const finAccountsBeforeReconcile=renderAccounts;
+renderAccounts=function(){finAccountsBeforeReconcile();const r=state.salaryReceipts['2026-10'];if(r&&r.dateToVerify){
+ $('accounts').insertAdjacentHTML('afterbegin','<div class="card"><h3>Paie d’octobre intégrée</h3><p>Les '+eur(r.amount)+' de salaire sont désormais inclus dans le solde calculé du Courant, à partir de la référence de 327,03 € avant paie.</p><p class="muted">Date comptable provisoire : '+esc(r.date)+'. Vérifie la date réelle de réception pour fiabiliser l’historique.</p><button onclick="finUpdateOctoberSalaryDate()">Corriger la date de réception</button></div>');
+ }};
+finReconcileOctoberSalary();
+const previousImport=importData;
+importData=async function(input){await previousImport(input);initialize()};
+})();
+</script>
+</body></html>

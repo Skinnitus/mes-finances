@@ -1,11 +1,11 @@
 {
   "name": "Mes Finances V4.0 — Midnight Bordeaux Ultimate",
   "short_name": "Mes Finances",
-  "description": "Budget personnel privé, hors connexion, suivi de comptes et prévisions",
+  "description": "Mes Finances — Midnight Bordeaux / Bordeaux Minimal, suivi personnel hors ligne",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#111626",
+  "background_color": "#101421",
   "theme_color": "#30192d",
   "icons": [
     {
